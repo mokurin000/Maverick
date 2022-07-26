@@ -409,22 +409,23 @@ impl<T: ?Sized> !Sync for UnsafeCell<T> {}
 
 ### `marker_trait_attr`
 
-这个特性为 trait添加了`#[marker]` attribute。
+这个特性为 trait 添加了`#[marker]` attribute。
 
-Rust 不允许 the defining of traits implementations that could overlap.
-This is so that the compiler will always know which implementation to use because there will always be only one.
+Rust 不允许trait的实现覆盖此前的实现。
+这样编译器就能确定要使用哪个实现——只有一个。
 
-Traits marked with `#[marker]` cannot override anything in their implementations.
-That way they are allowed to have overlapping implementations because all implementations will be the same.
+标志为 `#[marker]` 的 trait 不能在impl中覆盖任何东西。
+因此它们允许有重叠的实现，因为所有的实现都是一样的。
 
 ### `type_alias_impl_trait`, `impl_trait_in_bindings` and `trait_alias`
 
-`impl Trait` tells the compiler to infer a concrete type to replace it with that implements `Trait`.
-Currently, `impl Trait` is only used in the context of function arguments or return types.
+`impl Trait` 让编译器推导出具体类型，替代 `Trait`。
+目前，`impl Trait`只能在函数参数或返回类型中使用，无法应用于变量绑定。
 
-`type_alias_impl_trait` and `impl_trait_in_bindings` extend the places `impl trait` can be used to include type aliases and `let` bindings respectively.
+> 注：impl_trait_in_binding 临时被移除(2022-07-26)，可能是因为[破坏性更新](https://github.com/rust-lang/rust/issues/83021)
+`type_alias_impl_trait` 和 `impl_trait_in_bindings` 拓展了 `impl trait`，让其可用于定义类型别名和 `let` 绑定。
 
-`trait_alias` is subtlely different to `type_alias_impl_trait`.
+`trait_alias` 与 `type_alias_impl_trait` 有微妙的不同：
 Everywhere you use a type alias the type must remain constant.
 A single concrete type must be inferred by the compiler that works in all those places.
 Trait aliases are more forgiving as they can be a different type in each place they are used.
