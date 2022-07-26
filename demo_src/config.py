@@ -16,25 +16,20 @@ locale = "Asia/Shanghai"
 category_by_folder = False
 
 # For site
-site_name = "Maverick"
+site_name = "poly000客栈"
 site_logo = "${static_prefix}android-chrome-512x512.png"
-site_build_date = "2019-12-06T12:00+08:00"
-author = "AlanDecode"
-email = "hi@imalan.cn"
-author_homepage = "https://www.imalan.cn"
-description = "This is Maverick, Theme Galileo."
-key_words = ["Maverick", "AlanDecode", "Galileo", "blog"]
-language = 'english'
+site_build_date = "2020-09-29:00+08:00"
+author = "poly000"
+email = "1348292515@qq.com"
+author_homepage = "https://poly000.github.io"
+description = "poly000 的碎碎念"
+key_words = ["poly000", "blog"]
+language = 'chinese'
 external_links = [
     {
-        "name": "Maverick",
-        "url": "https://github.com/AlanDecode/Maverick",
-        "brief": "🏄‍ Go My Own Way."
-    },
-    {
-        "name": "Triple NULL",
-        "url": "https://www.imalan.cn",
-        "brief": "Home page for AlanDecode."
+        "name": "liolok",
+        "url": "https://liolok.com/",
+        "brief": "liolok的博客"
     }
 ]
 nav = [
@@ -57,19 +52,14 @@ nav = [
 
 social_links = [
     {
-        "name": "Twitter",
-        "url": "https://twitter.com/AlanDecode",
-        "icon": "gi gi-twitter"
-    },
-    {
         "name": "GitHub",
-        "url": "https://github.com/AlanDecode",
+        "url": "https://github.com/poly000",
         "icon": "gi gi-github"
     },
     {
-        "name": "Weibo",
-        "url": "https://weibo.com/5245109677/",
-        "icon": "gi gi-weibo"
+        "name": "Bilibili",
+        "url": "https://liolok.com/",
+        "icon": "gi gi-bilibili"
     }
 ]
 

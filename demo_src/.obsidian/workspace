@@ -1,0 +1,98 @@
+{
+  "main": {
+    "id": "b7f499841214db1a",
+    "type": "split",
+    "children": [
+      {
+        "id": "4b945618af09e2d1",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "2021-07-28-Awesome-Rust-Unstable-Features.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "30f52b4d9e9e048d",
+    "type": "split",
+    "children": [
+      {
+        "id": "ffef355d3f8a1940",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "aad5383532a005f1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "71d851bf4fba9420",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "bc3d21cfc2ca6801",
+    "type": "split",
+    "children": [
+      {
+        "id": "88f99692e9813271",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e147bfdcae2486de",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "2021-07-28-Awesome-Rust-Unstable-Features.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "4b945618af09e2d1",
+  "lastOpenFiles": [
+    "2021-07-28-Awesome-Rust-Unstable-Features.md",
+    "2021-07-25-Osdlyrics-Translation.md",
+    "未命名.md",
+    "2021-02-04-galgame.md",
+    "2020-09-30-ScreenPlay.md",
+    "2020-09-29-Maverick.md"
+  ]
+}
