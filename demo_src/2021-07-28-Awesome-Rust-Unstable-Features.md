@@ -33,6 +33,8 @@ tags:
 
 汉化进度： 480/849 行
 
+参与汉化：[Maverick/demo_src](https://github.com/poly000/Maverick/)
+
 ## Credits
 
 [原文]: https://lazy.codes/posts/awesome-unstable-rust-features/
