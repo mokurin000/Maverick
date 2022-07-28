@@ -520,6 +520,9 @@ impl<T> TrashStack<T> {
 }
 ```
 
+> 正如原文作者所说，rust（包括内部实现）正在减少box syntax的使用。
+> 所以这个章节咕了（理直气壮）
+
 This makes things a little more ergonomic but I don't think there is much chance that this feature will ever be stabilised.
 It seems to have existed forever with no plan for stabilisation but instead a little discussion about removing the feature.
 `box_synatx` is used heavily in the compiler's source and a little in the standard library.
@@ -538,13 +541,13 @@ impl<T> Box<T> {
 
 ### `async_closure`
 
-Currently to be async inside of a closure you have to use an async block.
+目前在闭包中使用异步代码你需要加async块。
 
 ```rust
 app.at("/").get(|_| async { Ok("Hi") });
 ```
 
-`async_closure` allows you to mark the closure itself as async just like you would a async function.
+`async_closure` 允许你将闭包本身标记为异步的，像异步函数那样写
 
 ```rust
 app.at("/").get(async |_| Ok("Hi"));
@@ -552,7 +555,7 @@ app.at("/").get(async |_| Ok("Hi"));
 
 ### `in_band_lifetimes`
 
-[how lifetimes used to work]: https://github.com/rust-lang/rfcs/pull/2115#issuecomment-323221054
+[生命周期如何工作]: https://github.com/rust-lang/rfcs/pull/2115#issuecomment-323221054
 
 To use a lifetime it must be explicitly brought into scope.
 
@@ -566,7 +569,7 @@ With `in_band_lifetimes` the lifetimes can be used without bringing them into sc
 fn select(data: &'data Data, params: &Params) -> &'data Item;
 ```
 
-Interestingly enough this was [how lifetimes used to work] pre `1.0.0`.
+有趣的是这正是[生命周期如何工作]在rust `1.0.0`前的写法。
 
 ### `format_args_capture`
 
@@ -576,16 +579,17 @@ That includes `print!`, `format!`, `write!` and many more.
 ```rust
 let name = "Ferris";
 let age = 11;
-println!("Hello {name}, you are {age} years old");
+println!("你好{name}，你{age}岁了。");
 ```
 
-It is likely that this will be stabilised with or soon after edition 2021.
+这个很可能在edition 2021中稳定。
+> 已经稳了
 
 ### `crate_visibility_modifier`
 
-With this feature you can write `crate struct Foo` rather than `pub(crate) struct Foo` and have it mean exactly the same thing.
+这个特性允许你写 `crate struct Foo` 而不是 `pub(crate) struct Foo` ，语义不变。
 
-This makes `pub(crate)` easier to write, encouraging the use of crate visibility when full `pub` is not necessary.
+这使得 `pub(crate)` 更易编写，鼓励在pub不必要的时候使用crate可见性，
 
 ## Types
 
