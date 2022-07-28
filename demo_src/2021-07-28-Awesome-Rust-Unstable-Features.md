@@ -35,8 +35,6 @@ tags:
 
 如果有原文错误，请联系 [Ethan Brierley] 且联系我更新翻译。
 
-汉化进度： 480/849 行
-
 参与汉化：[Maverick/demo_src](https://github.com/poly000/Maverick/)
 
 ## Credits
