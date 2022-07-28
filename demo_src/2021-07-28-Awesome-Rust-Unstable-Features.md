@@ -255,7 +255,7 @@ fn read_username_from_file() -> Result<String, io::Error> {
 ```
 
 `?` 在函数中被用于遇到 `Err` 时提前返回它。
-`try_blocks` 解锁了适用于任意代码块而不仅仅是函数的相同功能。
+`try_blocks` 提供了适用于任意代码块而不仅仅是函数的相同功能。
 使用 `try_blocks` 我们可以内联我们的 `read_usernames_from_file` 函数。
 
 `try_blocks` 和 `?` 的关系就像是 `label_break_value` 和 `return` 的关系。
@@ -274,7 +274,7 @@ let read_username_from_file: Result<String, io::Error> = try {
 }
 ```
 
-我喜欢这种东西。特别是较小的表达式，如果不提取成函数，易读性会更好。
+我喜欢这东西。特别是较小的表达式，如果不提取成函数，可读性会更好。
 
 ### `inline_const`
 
@@ -282,7 +282,7 @@ let read_username_from_file: Result<String, io::Error> = try {
 
 目前，获取一个编译时计算的值需要定义一个常量。
 
-> 译者注：或者是 `const fn`
+> 译者注：或者 `const fn`
 
 ```rust
 const PI_APPROX: f64 = 22.0 / 7.0;
