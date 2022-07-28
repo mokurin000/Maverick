@@ -12,6 +12,10 @@ tags:
   - Language_feature
 ---
 
+## 注意
+
+本文原文发布于2021-07-26，其中部分内容可能已经过时。请以 Rust RFC 为准。
+
 ## 关于翻译
 
 [oxa]: https://github.com/oxalica
@@ -374,8 +378,8 @@ where
 这些特性允许你为 [泛型类型], [关联类型] 以及 [const 变量](#const-泛型) 在更多地方指定默认值。
 
 它们允许你作为开发者创建更好的 API 。
-如果一个crate的用户对细节不感兴趣，而且那个物件有默认值，可以忽略细节。
-它们也让拓展 API 变得容易，无需对你的用户做出破坏性更新。
+如果一个crate的用户对细节不感兴趣，而那个对象有默认值，可以忽略细节。
+它们也让拓展 API 变得容易，无需做出破坏性更新。
 
 ### `negative_impls` 和 `auto_traits`
 
@@ -405,7 +409,7 @@ pub unsafe auto trait Send {
 impl<T: ?Sized> !Sync for UnsafeCell<T> {}
 ```
 
-注意 `!` 创造性的使用，表示 “不`Sync`”。
+注意 `!` 的使用，表示 “不`Sync`”。
 
 ### `marker_trait_attr`
 
