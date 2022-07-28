@@ -593,43 +593,44 @@ println!("你好{name}，你{age}岁了。");
 
 ### `type_ascription`
 
-Take for example the `collect` method on `Iterator`.
-Collect transforms an interator into a collection.
+用`Iterator`的`collect`方法举个例子：
+collect将迭代器转换到集合
 
 ```rust
 let word = "hello".chars().collect();
 println!("{:?}", word);
 ```
 
-This does not compile because Rust is unable to infer the type of `word`.
-This can be fixed by replacing the first line with:
+这个不能编译，因为rust无法推导出`word`的类型。
+可以把第一行换成：
 
 ```rust
 let word: Vec<char> = "hello".chars().collect();
 ```
 
-With `type_ascription` the `let` binding is no longer necessary and one can simply:
+有了`type_ascription`就不需要再加上let绑定，我们可以直接：
 
 ```rust
 println!("{:?}", "hello".chars().collect(): Vec<char>);
 ```
 
-The `: Type` syntax can be used anywhere to hint at the compiler "I want this type at this point".
+`: Type` 语法可以用在任何一处，提醒编译器“我在这里想要得到这个类型”
 
 ### `never_type`
 
-It is possible to define `enum`s with zero variants.
-Such an enum exists stable in the standard library.
+你可以定义没有变体的枚举体，
+这种枚举体也存在于标准库中。
 
 ```rust
 pub enum Infallible {}
 ```
 
-It is possible to use this type in generics and function signatures but never possible for it to be constructed.
-There are simply no variants to construct.
+你可以在泛型或函数签名中使用该类型，但它不可能被构造。
+没有可以用来构造的变体。
 
 The unit type, `()` would be equivalent to an enum with a single variant.
-`never_type` introduces a new type, `!` which is equivalent to our `Infallible` enum with zero variants.
+元类型，`()` 等价于只有一个变体的枚举。
+`never_type` 引入了一种新的类型，`!`等价于我们的没有变体的 `Infallible`。
 
 Because `!` can never be constructed it can be given special powers.
 We don't have to handle the case of `!` because we have proven it will never exist.
