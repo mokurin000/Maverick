@@ -430,24 +430,24 @@ Rust 不允许trait的实现覆盖此前的实现。
 `type_alias_impl_trait` 和 `impl_trait_in_bindings` 拓展了 `impl trait`，让其可用于定义类型别名和 `let` 绑定。
 
 `trait_alias` 与 `type_alias_impl_trait` 有微妙的不同：
-Everywhere you use a type alias the type must remain constant.
-A single concrete type must be inferred by the compiler that works in all those places.
-Trait aliases are more forgiving as they can be a different type in each place they are used.
+你使用类型别名的时候，类型必须是固定的。
+编译器必须推断出，并且只应用单一具体的类型。
+trait别名则较为宽松，每次使用都可以是不同的类型。
 
 ### `fn_traits` and `unboxed_closures`
 
-[function overloading]: https://en.wikipedia.org/wiki/Function_overloading
-[variadic functions]: https://en.wikipedia.org/wiki/Variadic_function
+[函数重载]: https://en.wikipedia.org/wiki/Function_overloading
+[不定参函数]: https://en.wikipedia.org/wiki/Variadic_function
 
-The three traits `Fn`, `FnMut` and `FnOnce` are known as the fn traits.
-They are automatically implemented for any functions or closures that you create and are what provides the ability to pass arguments to them.
+`Fn`，`FnMut`和`FnOnce`被认为是`fn`的trait。
+它们会被任何函数或者你创建的闭包自动实现，它们允许你给它们传参。
 
-An automatic implementation is currently the only way to implement those traits.
-The `fn_traits` feature allows for custom implementations on any type.
-This is very similar to operator overloading but customising the use of `()`.
+目前它们只能被自动实现。
+`fn_trait` 则允许为任意类型提供自定义实现。
+这就像是操作符重载，但要自定义的是`()`调用。
 
 ```rust
-#![feature(unboxed_closures)] // required to implement a function with `extern "rust-call"`
+#![feature(unboxed_closures)] // 实现带有`extern "rust-call"`的函数
 #![feature(fn_traits)]
 
 struct Multiply;
@@ -483,14 +483,14 @@ fn main() {
 }
 ```
 
-Notice that this is being used to create a hacky version of [function overloading] and [variadic functions].
+这可被用于实现有点 hacky 的[函数重载]和[不定参函数].
 
-## Sugar
+## 语法糖
 
 ### `box_patterns` and `box_syntax`
 
-These two features make constructing and destructing `Box`es easier.
-The `box` keyword replaces `Box::new(..)` and allows for the dereferencing `Box`es when pattern matching.
+这两个特性让`Box`的构造和析构变得更容易。
+box关键字将取代`Box::new(...)`，并且允许在模式匹配中解引用`Box`。
 
 ```rust
 struct TrashStack<T> {
