@@ -27,6 +27,8 @@ tags:
 
 主要译者：[poly000](https://github.com/poly000)，[比那名居](https://t.me/Hinanawi_Tenshi_M)
 
+翻译质量太差，所以正在重新翻译。
+
 参考了这些人的建议：[unsafeIO]，[xieyuheng]，[oxa]，[Edward_P]
 
 术语部分翻译参考了 [Rust 语言术语中英文对照表]，有改动。
@@ -218,7 +220,7 @@ let number = 'block: {
 
 [版本引导]: https://doc.rust-lang.org/edition-guide/rust-2018/error-handling-and-panics/the-question-mark-operator-for-easier-error-handling.html
 
-[版本引导]使用这个例子展示问号运算符是如何工作的：
+[版本引导]使用这个例子说明问号运算符是如何工作的：
 
 ```rust
 fn read_username_from_file() -> Result<String, io::Error> {
@@ -238,7 +240,7 @@ fn read_username_from_file() -> Result<String, io::Error> {
 }
 ```
 
-使用 `?` 操作符简化代码，可以得到这样等效的代码：
+使用 `?` 操作符简化，可以得到等效的代码：
 
 ```rust
 fn read_username_from_file() -> Result<String, io::Error> {
@@ -253,10 +255,10 @@ fn read_username_from_file() -> Result<String, io::Error> {
 
 `?` 在函数中被用于遇到 `Err` 时提前返回它。
 `try_blocks` 提供了适用于任意代码块而不仅仅是函数的相同功能。
-使用 `try_blocks` 我们可以内联我们的 `read_usernames_from_file` 函数。
+使用 `try_blocks` 我们可以内联 `read_usernames_from_file` 函数。
 
 `try_blocks` 和 `?` 的关系就像是 `label_break_value` 和 `return` 的关系。
-`try_blocks` 的RFC提到了 `label_break_value` ，作为一种可能的 `try_blocks` 解读方式。
+`try_blocks` 的RFC提到了 `label_break_value` ，作为 `try_blocks` 一种可能的解糖。
 
 接写来重写我们的 `read_username_from_file` 成一个简单的 `let` 绑定与一个 `try` 代码块。
 
@@ -271,15 +273,13 @@ let read_username_from_file: Result<String, io::Error> = try {
 }
 ```
 
-我喜欢这东西。特别是较小的表达式，如果不提取成函数，可读性会更好。
+我喜欢这个特性。特别是遇到较小的表达式，如果不提取成函数，可读性会更好。
 
 ### `inline_const`
 
 [constant propagation]: https://blog.rust-lang.org/inside-rust/2019/12/02/const-prop-on-by-default.html
 
-目前，获取一个编译时计算的值需要定义一个常量。
-
-> 译者注：或者 `const fn`
+目前，指定某个值编译时计算需要定义一个常量。
 
 ```rust
 const PI_APPROX: f64 = 22.0 / 7.0;
@@ -289,7 +289,7 @@ fn main() {
 }
 ```
 
-使用 `inline_const` 我们可以用匿名表达式完成同样的事。
+有了 `inline_const` 我们可以用匿名表达式完成同样的事。
 
 ```rust
 fn main() {
@@ -297,19 +297,17 @@ fn main() {
 }
 ```
 
-在这个简单的例子中， `const` 块几乎完全是不必要的，因为编译器的优化[constant propagation]。
-然而，对于更复杂的常量，用块来表示可能很有益。
+在这个简单的例子中， 因为编译器优化[constant propagation]，`const` 块几乎可以说是不必要的。
+但是对于更复杂的常量，用块来表示可能更好。
 
-这个特性也允许这些块在模式中使用。
-`match x { 1 + 3 => {} }` 会导致格式错误，而 `match x { const { 1 + 3 } => {} }` 不会。
+这个特性也允许在模式匹配中使用这些块。
+`match x { 1 + 3 => {} }` 会导致语法错误，而 `match x { const { 1 + 3 } => {} }` 不会。
 
 ### `if_let_guard`
 
 [if 守卫]: https://doc.rust-lang.org/beta/rust-by-example/flow_control/match/guard.html
 
-拓展可用在 `match` 表达式中的 [`if` 守卫][if 守卫] ，允许使用 `if let`。
-
-> 译注：原文中使用了 "`match` statement" 的说法，这里翻译为 `match` 表达式。
+拓展 `match` 中的 [`if` 守卫][if 守卫] ，允许使用 `if let`。
 
 ### `let_chains`
 
@@ -335,7 +333,7 @@ fn fizzbuzz() -> impl Iterator<Item = String> {
 }
 ```
 
-通过 `associated_type_bounds` 特性，我们可以在这种情况下使用一个匿名类型。
+有了 `associated_type_bounds` 特性，我们可以在这种情况下使用一个匿名类型：
 
 ```rust
 fn fizzbuzz() -> impl Iterator<Item: Display> { ... }
@@ -354,7 +352,7 @@ where
 }
 ```
 
-使用这个特性，我们可以简单地写成：
+有了这个特性，我们就可以简单地写成：
 
 ```rust
 fn flatten_twice<T>(iter: T) -> Flatten<Flatten<T>>
@@ -365,7 +363,7 @@ where
 }
 ```
 
-这对我来说容易推导许多。
+这种写法容易理解许多。
 
 ### `default_type_parameter_fallback`, `associated_type_defaults`以及`const_generics_defaults`
 
