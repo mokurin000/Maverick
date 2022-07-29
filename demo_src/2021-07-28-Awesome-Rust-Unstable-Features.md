@@ -60,34 +60,33 @@ Nightly 编译器每天都会发布，而且只有它允许你启用 Unstable Ru
 [Unstable 特性列表]: https://github.com/rust-lang/rust/blob/135ccbaca86ed4b9c0efaf0cd31442eae57ffad7/src/librustc_feature/active.rs#L83-L530
 [ICE]: https://github.com/rust-lang/rust/labels/I-ICE
 
-Unstable Rust 可以让你使用在Stable Rust 中无法表示的API。正因如此，编译器与标准库都使用了 Unstable 特性。
+Unstable Rust 可以让你使用在Stable Rust 中不允许使用的API。为此，编译器与标准库都使用了 Unstable 特性。
 
-使用 Unstable 特性总是伴随着一些风险。它们经常会有一些意想不到的行为，有时甚至会破坏 Rust 的内存安全保证，导致未定义行为。一部分特性可能开发的很好，而另一部分可能未开发完善。
+使用 Unstable 特性总是伴随着一些风险。它们经常会有一些不期望行为，有时甚至会破坏 Rust 的内存安全保证，导致未定义行为。这些特性可能开发的很好，但也能未开发完善。
 
-对于使用不稳定特性的 Nightly 编译器，遇到“内部编译器错误”并不少见，这种情况通常称为[ICE]。它发生于编译过程中，编译器将会panic。这可能是由于数据与查询操作因未完成的特性而被破坏，甚至可能只是因为没做完的特性中打了个 `todo!()`。
+使用Unstable特性的 Nightly 编译器，遇到“内部编译器错误”并不少见，这种情况通常称为[ICE]。它发生于编译过程中，编译器将会panic。这可能是由于数据与查询操作因未完成的特性而被破坏，甚至可能只是因为没做完的特性中打了个 `todo!()`。
 
-如果你遇到了ICE，检查一下这个问题是否已知，否则就把它报告给[bug tracker]。
+如果你遇到了ICE，检查一下是否已经被反馈，没有的话就把它报告给[bug tracker]。
 
 Rust 不保证在未来继续支持它的 Unstable 特性。
 作为 Rust 开发者，我们享受着优秀的向下兼容性与稳定性，
 而启用 Unstable 特性时，Rust不再提供这些保证。
-今天工作的程序可能明天就寄了
+今天工作的程序可能明天就寄了！
 
-我决定研究 Unstable 特性，不是因为我需要用它们去解决实际问题。
-我寻找它们是因为我觉得他们很有趣。
-对我来说，使用 Unstable 的特性，是一种有趣的，使我更多地参与到语言本身的开发过程的方法。
+我决定学习 Unstable 特性，不是因为我需要用它们去解决实际问题，而是觉得他们很有趣。
+对我来说，使用 Unstable 特性，是种有趣的让我更多地参与语言本身的开发过程的方法。
 
-> Unstable 特性的全面列表见[Unstable 特性列表]。
+> Unstable 特性的完整列表见[Unstable 特性列表]。
 
 ## 启用 Unstable 特性
 
-为了开始使用 Unstable 特性，首先你需要安装 Nightly 工具链：
+为了使用 Unstable 特性，首先你需要安装 Nightly 工具链：
 
 ```bash
 rustup toolchain install nightly
 ```
 
-若要使用 Nightly 工具链，你需要在运行命令时加上 `+nightly` 修饰符。
+临时使用 Nightly 工具链，你可以在运行cargo时加上 `+nightly`。
 
 ```bash
 <rust-command> +nightly <args>
@@ -99,14 +98,13 @@ rustup toolchain install nightly
 cargo +nightly run
 ```
 
-另外，你可以将你的默认编译器改为 Nightly ，这样你就不再需要使用 `+nightly` 修饰符。
-我经常这样做，因为我不认为 nightly 编译器很不稳定，即使对于我的在 stable 上可以编译的项目也是这样。
+另外，你可以将你的默认编译器改为 Nightly ，这样你就不再需要加上 `+nightly。
 
 ```bash
 rustup default nightly
 ```
 
-一旦你使用 nightly 编译器，你就可以直接开始使用 Unstable 特性。让我们试一试吧！
+切换到 nightly 编译器后，你就可以使用 Unstable 特性。让我们试一试吧！
 
 ```rust
 fn main() {
@@ -114,7 +112,7 @@ fn main() {
 }
 ```
 
-它会导致这样的编译错误：
+你会得到如下编译错误：
 
 ```rust
 error[E0658]: box expression syntax is experimental; you can call `Box::new` instead
@@ -127,7 +125,7 @@ error[E0658]: box expression syntax is experimental; you can call `Box::new` ins
   = help: add `#![feature(box_syntax)]` to the crate attributes to enable
 ```
 
-正如以往，Rust 在 `help` 消息中准确地告诉了我们需要做什么。
+Rust 在 `help` 消息中准确地告诉了我们应该做什么——
 我们需要用 `#![feature(box_syntax)]` 启用这个特性。
 
 ```rust
@@ -137,11 +135,11 @@ fn main() {
 }
 ```
 
-所有 Unstable 特性都需要在可以使用前以 `#![feature(..)]` 启用。
-如果你忘记了，编译器**通常**会正确地指出要如何做，然而，并非总会这样。
+所有 Unstable 特性都需要用 `#![feature(..)]` 启用。
+即使你忘记了，编译器通常也会指出要如何做，虽然不总会是。
 
-现在，让我们开始讨论一些特性本身。
-我把你需要启用的特性名称放在每个特性的标题中的 `代码块` 中，而在代码片段中省略它们，以保持简洁。
+现在，我们看看这些特性。
+我把需要启用的特性名称放在每个特性的标题中的 `代码块` 中，在代码片段中省略，以保持简洁。
 
 ## 控制流、模式和块
 
@@ -149,8 +147,8 @@ fn main() {
 
 > 于 Rust 1.59 稳定。
 
-在Rust中，我们经常绑定到定义时解构某个类型。
-这通常是通过 `let` 绑定完成的。
+在Rust中，我们经常在绑定到定义时解构某个类型。
+我们一般会使用`let`绑定：
 
 ```rust
 // 创建两个变量, 一个是 x, 一个是 y 
@@ -189,7 +187,7 @@ let number: u8 = loop {
 };
 ```
 
-`label_break_value` 把它拓展到可用于任何被标记的块，而不仅仅是 `loop`。
+`label_break_value` 把这拓展到任何被标记的块，而不仅仅是 `loop`。
 它的行为，就像是一种提前的 `return` ，不过适用于任何代码块，而不只是函数体。
 
 标记代码块的语法，和生命周期很相似。
