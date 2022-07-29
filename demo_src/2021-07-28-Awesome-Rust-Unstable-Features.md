@@ -48,11 +48,11 @@ tags:
 
 ## 什么是Unstable Rust？
 
-Rust 发布于三个频道： stable，beta，nightly。
+Rust 有三个发布版本： stable，beta，nightly。
 
-Nightly 编译器每天都会发布，而且唯有它允许你启用 Unstable Rust 特性。
+Nightly 编译器每天都会发布，而且只有它允许你启用 Unstable Rust 特性。
 
-> 这篇文章只讨论 Unstable 编译器特性，而不包括 Unstable 标准库特性。
+> 这篇文章只讨论 Unstable 编译器特性，不讨论此版本的标准库特性。
 
 ## 为什么要用 Unstable 特性？
 
@@ -70,8 +70,8 @@ Unstable Rust 可以让你使用在Stable Rust 中无法表示的API。正因如
 
 Rust 不保证在未来继续支持它的 Unstable 特性。
 作为 Rust 开发者，我们享受着优秀的向下兼容性与稳定性，
-而启用 Unstable 特性时，这些保证都被抛在脑后。
-今天工作的程序可能明天就大不相同。
+而启用 Unstable 特性时，Rust不再提供这些保证。
+今天工作的程序可能明天就寄了
 
 我决定研究 Unstable 特性，不是因为我需要用它们去解决实际问题。
 我寻找它们是因为我觉得他们很有趣。
@@ -556,7 +556,7 @@ app.at("/").get(async |_| Ok("Hi"));
 
 ### `in_band_lifetimes`
 
-[生命周期如何工作]: https://github.com/rust-lang/rfcs/pull/2115#issuecomment-323221054
+[生命周期]: https://github.com/rust-lang/rfcs/pull/2115#issuecomment-323221054
 
 To use a lifetime it must be explicitly brought into scope.
 
@@ -570,7 +570,7 @@ With `in_band_lifetimes` the lifetimes can be used without bringing them into sc
 fn select(data: &'data Data, params: &Params) -> &'data Item;
 ```
 
-有趣的是这正是[生命周期如何工作]在rust `1.0.0`前的写法。
+有趣的是这正是[生命周期]在rust `1.0.0`前的写法。
 
 ### `format_args_capture`
 
