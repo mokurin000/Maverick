@@ -15,6 +15,7 @@ tags:
 ## 注意
 
 本文原文发布于2021-07-26，其中部分内容可能已经过时。请以 Rust RFC 为准。
+关于已经稳定的 feeature，详见 [accepted.rs](https://github.com/rust-lang/rust/blob/master/compiler/rustc_feature/src/accepted.rs)
 
 ## 关于翻译
 
@@ -149,17 +150,18 @@ fn main() {
 
 ### `destructuring_assignment`
 
-在Rust中，在绑定某一类型到一个定义时解构它是很常见的。
+> 于 Rust 1.59 稳定。
+
+在Rust中，我们经常绑定到定义时解构某个类型。
 这通常是通过 `let` 绑定完成的。
 
 ```rust
-// 创建两个 "变量", 一个是 x, 一个是 y 
+// 创建两个变量, 一个是 x, 一个是 y 
 let Point { x, y } = Point::random();
 ```
 
-传统上，这种模式只有在实例化一个新定义时才能实现。
-`destructuring_assignment` 将它拓展到可用于修改值时。
-<!-- extends this to work when mutating values -->
+目前这种写法只得在实例化新的定义时使用。
+`destructuring_assignment` 将它拓展到赋值。
 
 换句话说，我们可以不使用 `let` 完成解构。
 
@@ -176,7 +178,7 @@ Point { x, y } = Point::random();
 [not goto]: http://david.tribble.com/text/goto.html
 [标记`loop`]: https://doc.rust-lang.org/rust-by-example/flow_control/loop/nested.html
 
-一个很少被知道的 Rust 特性是，[`loop`可以带值退出]。
+Rust 有一个不那么广为人知的特性，[`loop`可以带值退出]。
 就像 Rust 中许多其它的结构，在 Rust 中 `loop` 并不仅仅是语句, 而是[表达式][关于rust表达式]。
 
 ```rust
@@ -316,6 +318,8 @@ fn main() {
 
 ### `let_chains`
 
+> 于 Rust 1.64 稳定。
+
 目前，`if let` 和 `while let` 表达式不能以 `||` 或 `&&` 连接，
 这个特性添加了支持。
 
@@ -323,7 +327,7 @@ fn main() {
 
 ### `associated_type_bounds`
 
-看看这个稳定 Rust 函数：
+看看这个 stable Rust 函数：
 
 ```rust
 fn fizzbuzz() -> impl Iterator<Item = String> {
@@ -373,6 +377,8 @@ where
 [泛型类型]: https://github.com/rust-lang/rfcs/blob/master/text/0213-defaulted-type-params.md
 [关联类型]: https://github.com/rust-lang/rfcs/blob/master/text/2532-associated-type-defaults.md
 
+> `const_generics_defaults` 于 Rust 1.59 稳定。
+
 这些特性允许你为 [泛型类型], [关联类型] 以及 [const 变量](#const-泛型) 在更多地方指定默认值。
 
 它们允许你作为开发者创建更好的 API 。
@@ -400,7 +406,7 @@ pub unsafe auto trait Send {
 如果每个类型都能简单地实现 自动trait ，它们也不会那么有用。
 这正是引入 `negative_impls` 的原因。
 
-`negative_impls` 允许一个类型选择不实现自动trait。
+`negative_impls` 允许一个类型不实现auto trait。
 例如 `UnsafeCell` 。不受限制的 `UnsafeCell` 在线程间共享是非常不安全的，因此它被标记为 `Sync` 也是很不安全的。
 
 ```rust
@@ -571,6 +577,8 @@ fn select(data: &'data Data, params: &Params) -> &'data Item;
 
 ### `format_args_capture`
 
+> 于 Rust 1.58 稳定。
+
 This allows for named arguments to be placed inside of strings inside any macro that depends on `std::format_args!`.
 That includes `print!`, `format!`, `write!` and many more.
 
@@ -579,9 +587,6 @@ let name = "Ferris";
 let age = 11;
 println!("你好{name}，你{age}岁了。");
 ```
-
-这个很可能在edition 2021中稳定。
-> 已经稳了
 
 ### `crate_visibility_modifier`
 
@@ -713,11 +718,11 @@ fn slow_but_small() {
 
 ### `stmt_expr_attributes`
 
-这个功能让你几乎可以在任何地方放置属性，而不仅仅是顶层项目。例如，有了这个功能，你就可以在一个闭包上放置一个[optimize attribute](#optimize-attribute)
+这个特性让你可以在几乎任何地方放置属性，而不仅仅是顶层项目。例如，有了这个功能，你就可以在一个闭包上放置一个[optimize attribute](#optimize-attribute)
 
 ### `cfg_version`
 
-该功能允许根据编译器版本进行条件编译。
+该特性允许根据编译器版本进行条件编译。
 
 ```rust
 #[cfg(version("1.42"))] // 1.42 以上
@@ -735,15 +740,13 @@ fn a() {
 
 ### `no_core`
 
-[impossible to write anything useful]: https://github.com/rust-lang/rust/issues/29639#issuecomment-155280578
-
-自从你可以用 `#![no_std]` 选项来选择不使用标准库已经过了一段时间了。
+自从你可以用 `#![no_std]` 选项来选择不使用完整标准库已经有一段时间了。
 这对于不在完整环境中运行的应用非常重要，比如嵌入式系统。
 嵌入式系统通常没有操作系统，甚至没有动态内存，所以 `std` 中的许多功能都无法使用。
 
 更进一步的，你现在可以通过 `#![no_core]` 选项来选择不使用 libcore。
 这会几乎不给你留下任何东西，你甚至不能使用libc。
-这会让你[很难实现任何有用的东西][impossible to write anything useful]。
+（比如说，你希望你的crate可以成为libcore的依赖。）
 
 ## 其它
 
