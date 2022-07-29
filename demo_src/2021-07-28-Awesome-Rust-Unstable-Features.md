@@ -412,11 +412,13 @@ impl<T: ?Sized> !Sync for UnsafeCell<T> {}
 
 这个特性为 trait 添加了`#[marker]` 属性。
 
-Rust 不允许trait的实现定义覆盖此前的实现。
+> 详见 [Unstable Book](https://doc.rust-lang.org/beta/unstable-book/language-features/marker-trait-attr.html)
+
+Rust 不允许定义trait的实现时覆盖此前的实现。
 这样编译器就能确定要使用哪个实现——只有一个。
 
-标志为 `#[marker]` 的 trait 不能在impl中覆盖任何东西。
-因此它们允许有重叠的实现，因为所有的实现都是一样的。
+标志为 `#[marker]` 的 trait 不能在实现中覆盖任何东西。
+这样它们就能允许重叠的实现，因为所有的实现都是一样的。
 
 ### `type_alias_impl_trait`, `impl_trait_in_bindings` and `trait_alias`
 `impl Trait` 让编译器推导具体类型，把它换成实现了`Trait`的类型。
