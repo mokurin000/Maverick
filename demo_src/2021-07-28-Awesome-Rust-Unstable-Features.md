@@ -375,8 +375,8 @@ where
 这些特性允许你为 [泛型类型], [关联类型] 以及 [const 变量](#const-泛型) 在更多地方指定默认值。
 
 它们允许你作为开发者创建更好的 API 。
-如果一个crate的用户对细节不感兴趣，而那个对象有默认值，可以忽略细节。
-它们也让拓展 API 变得容易，无需做出破坏性更新。
+如果一个crate的用户对细节不感兴趣，而它有默认值，则可以忽略细节。
+这也让拓展 API 变得容易，无需做出破坏性更新。
 
 ### `negative_impls` 和 `auto_traits`
 
@@ -384,7 +384,7 @@ where
 [sync]: https://doc.rust-lang.org/std/marker/trait.Sync.html
 [send impl]: https://doc.rust-lang.org/src/core/marker.rs.html#38-40
 
-这些特性都被标准库使用。[`Send`][send] 和 [`Sync`][sync] 都是自动 trait 的例子。
+这些特性都被标准库使用。[`Send`][send] 和 [`Sync`][sync] 都是自动 trait。
 
 `Send` trait 被[这样定义在标准库中][send impl]：
 
@@ -394,33 +394,32 @@ pub unsafe auto trait Send {
 }
 ```
 
-它让编译器为任意 结构体/枚举/联合 自动实现 `Send` trait，前提是构成这个类型的类型都实现了`Send`。
+注意`auto`关键字，它让编译器为任意结构体/枚举体/联合体自动实现 `Send` trait，（前提是构成这个类型的类型都实现了`Send`）
 
-如果每个类型都能简单地实现 自动trait ，它们也不会那么有用。
+如果每个类型都能简单地实现自动trait ，它们也不会那么有用。
 这正是引入 `negative_impls` 的原因。
 
-`negative_impls` 允许一个类型不实现auto trait。
-例如 `UnsafeCell` 。不受限制的 `UnsafeCell` 在线程间共享是非常不安全的，因此它被标记为 `Sync` 也是很不安全的。
+`negative_impls` 允许一个类型不实现某个auto trait。
+举个例子，`UnsafeCell`。不受限制的 `UnsafeCell` 在线程间共享非常不安全，因此它被标记为 `Sync` 也不安全。
 
 ```rust
 impl<T: ?Sized> !Sync for UnsafeCell<T> {}
 ```
 
-注意 `!` 的使用，表示 “不`Sync`”。
+注意 `!` ，表示 “不`Sync`”。
 
 ### `marker_trait_attr`
 
-这个特性为 trait 添加了`#[marker]` attribute。
+这个特性为 trait 添加了`#[marker]` 属性。
 
-Rust 不允许trait的实现覆盖此前的实现。
+Rust 不允许trait的实现定义覆盖此前的实现。
 这样编译器就能确定要使用哪个实现——只有一个。
 
 标志为 `#[marker]` 的 trait 不能在impl中覆盖任何东西。
 因此它们允许有重叠的实现，因为所有的实现都是一样的。
 
 ### `type_alias_impl_trait`, `impl_trait_in_bindings` and `trait_alias`
-
-`impl Trait` 让编译器推导出具体类型，替代 `Trait`。
+`impl Trait` 让编译器推导具体类型，把它换成实现了`Trait`的类型。
 目前，`impl Trait`只能在函数参数或返回类型中使用，无法应用于变量绑定。
 
 > 注：impl_trait_in_binding 临时被移除(2022-07-26)，可能是因为[破坏性更新](https://github.com/rust-lang/rust/issues/83021)
