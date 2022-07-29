@@ -15,7 +15,7 @@ tags:
 ## 注意
 
 本文原文发布于2021-07-26，其中部分内容可能已经过时。请以 Rust RFC 为准。
-关于已经稳定的 feeature，详见 [accepted.rs](https://github.com/rust-lang/rust/blob/master/compiler/rustc_feature/src/accepted.rs)
+已经稳定的特性见 [accepted.rs](https://github.com/rust-lang/rust/blob/master/compiler/rustc_feature/src/accepted.rs)。
 
 ## 关于翻译
 
@@ -24,19 +24,16 @@ tags:
 [unsafeIO]: https://github.com/unsafeIO
 [Edward_P]: https://github.com/edward-p
 [Rust 语言术语中英文对照表]: https://rustwiki.org/wiki/translate/english-chinese-glossary-of-rust/
-[在仓库中指出]: https://github.com/poly000/poly000.github.io/issue
 
 主要译者：[poly000](https://github.com/poly000)，[比那名居](https://t.me/Hinanawi_Tenshi_M)
 
-参考了这些人（排名不分先后）的建议：[unsafeIO]，[xieyuheng]，[oxa]，[Edward_P]。
+参考了这些人的建议：[unsafeIO]，[xieyuheng]，[oxa]，[Edward_P]
 
 术语部分翻译参考了 [Rust 语言术语中英文对照表]，有改动。
 
-如果有翻译错误，请您[在仓库中指出]！
-
 如果有原文错误，请联系 [Ethan Brierley] 且联系我更新翻译。
 
-参与汉化：[Maverick/demo_src](https://github.com/poly000/Maverick/)
+参与：[Maverick/demo_src](https://github.com/poly000/Maverick/)
 
 ## Credits
 
@@ -47,15 +44,15 @@ tags:
 
 ## 简介
 
-这篇文章介绍了一些尚不稳定的 Rust 编译器特性。它将会简要叙述这些特性，并不会深入太多的细节。
+这篇文章介绍了一些尚不稳定的 Rust 编译器特性。我将会简单叙述这些特性，并不会深入太多细节。
 
 ## 什么是Unstable Rust？
 
-Rust 发布于三个渠道： stable，beta，以及 nightly。
+Rust 发布于三个频道： stable，beta，nightly。
 
-Nightly 编译器每天都会发布，而且唯有它允许你解锁不稳定 Rust 特性。
+Nightly 编译器每天都会发布，而且唯有它允许你启用 Unstable Rust 特性。
 
-> 这篇文章只讨论 Unstable 编译器特性，不稳定的库特性不属于这个话题。
+> 这篇文章只讨论 Unstable 编译器特性，而不包括 Unstable 标准库特性。
 
 ## 为什么要用 Unstable 特性？
 
@@ -67,7 +64,7 @@ Unstable Rust 可以让你使用在Stable Rust 中无法表示的API。正因如
 
 使用 Unstable 特性总是伴随着一些风险。它们经常会有一些意想不到的行为，有时甚至会破坏 Rust 的内存安全保证，导致未定义行为。一部分特性可能开发的很好，而另一部分可能未开发完善。
 
-对于使用不稳定特性的 Nightly 编译器，遇到“内部编译器错误”并不少见，这种情况通常称为[ICE]。它发生于编译过程中，编译器将会panic。这可能是由于数据与查询操作因未完成的特性而畸形，甚至可能只是因为未做出的特性部分被打了一个 `todo!()`。
+对于使用不稳定特性的 Nightly 编译器，遇到“内部编译器错误”并不少见，这种情况通常称为[ICE]。它发生于编译过程中，编译器将会panic。这可能是由于数据与查询操作因未完成的特性而被破坏，甚至可能只是因为没做完的特性中打了个 `todo!()`。
 
 如果你遇到了ICE，检查一下这个问题是否已知，否则就把它报告给[bug tracker]。
 
