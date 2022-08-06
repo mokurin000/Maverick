@@ -220,7 +220,7 @@ let number = 'block: {
 
 [版本引导]: https://doc.rust-lang.org/edition-guide/rust-2018/error-handling-and-panics/the-question-mark-operator-for-easier-error-handling.html
 
-[版本引导]使用这个例子说明问号运算符是如何工作的：
+[版本引导]用这个例子解释问号运算符的工作方式：
 
 ```rust
 fn read_username_from_file() -> Result<String, io::Error> {
@@ -253,14 +253,15 @@ fn read_username_from_file() -> Result<String, io::Error> {
 }
 ```
 
-`?` 在函数中被用于遇到 `Err` 时提前返回它。
-`try_blocks` 提供了适用于任意代码块而不仅仅是函数的相同功能。
-使用 `try_blocks` 我们可以内联 `read_usernames_from_file` 函数。
+`?` 可以在函数中提前返回 `Err`。
+`try_blocks` 提供了适用于任意代码块的相同功能。
+使用 `try_blocks` ，我们可以内联 `read_usernames_from_file` 函数。
 
 `try_blocks` 和 `?` 的关系就像是 `label_break_value` 和 `return` 的关系。
 `try_blocks` 的RFC提到了 `label_break_value` ，作为 `try_blocks` 一种可能的解糖。
 
-接写来重写我们的 `read_username_from_file` 成一个简单的 `let` 绑定与一个 `try` 代码块。
+接下来重写我们的 `read_username_from_file` ，
+我们得到了一个简单的 `let` 绑定和 `try` 代码块。
 
 ```rust
 let read_username_from_file: Result<String, io::Error> = try {
@@ -273,7 +274,7 @@ let read_username_from_file: Result<String, io::Error> = try {
 }
 ```
 
-我喜欢这个特性。特别是遇到较小的表达式，如果不提取成函数，可读性会更好。
+我喜欢这个特性。特别是对于较小的表达式，如果不提取成函数，可读性会更好。
 
 ### `inline_const`
 
@@ -300,14 +301,14 @@ fn main() {
 在这个简单的例子中， 因为编译器优化[constant propagation]，`const` 块几乎可以说是不必要的。
 但是对于更复杂的常量，用块来表示可能更好。
 
-这个特性也允许在模式匹配中使用这些块。
-`match x { 1 + 3 => {} }` 会导致语法错误，而 `match x { const { 1 + 3 } => {} }` 不会。
+这个特性也允许在模式匹配中使用const块。
+如 `match x { 1 + 3 => {} }` 会导致语法错误，而 `match x { const { 1 + 3 } => {} }` 不会。
 
 ### `if_let_guard`
 
 [if 守卫]: https://doc.rust-lang.org/beta/rust-by-example/flow_control/match/guard.html
 
-拓展 `match` 中的 [`if` 守卫][if 守卫] ，允许使用 `if let`。
+拓展 `match` 中的 [`if` 守卫][if 守卫] ，使其允许使用 `if let`。
 
 ### `let_chains`
 
