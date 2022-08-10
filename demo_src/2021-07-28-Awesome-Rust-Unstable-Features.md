@@ -19,19 +19,11 @@ tags:
 
 ## 关于翻译
 
-[oxa]: https://github.com/oxalica
-[xieyuheng]: https://github.com/xieyuheng
-[unsafeIO]: https://github.com/unsafeIO
-[Edward_P]: https://github.com/edward-p
 [Rust 语言术语中英文对照表]: https://rustwiki.org/wiki/translate/english-chinese-glossary-of-rust/
 
 主要译者：[poly000](https://github.com/poly000)，[比那名居](https://t.me/Hinanawi_Tenshi_M)
 
-翻译质量太差，所以正在重新翻译。
-
-参考了这些人的建议：[unsafeIO]，[xieyuheng]，[oxa]，[Edward_P]
-
-术语部分翻译参考了 [Rust 语言术语中英文对照表]，有改动。
+术语翻译部分参考了 [Rust 语言术语中英文对照表]。
 
 如果有原文错误，请联系 [Ethan Brierley] 且联系我更新翻译。
 
