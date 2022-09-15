@@ -748,16 +748,16 @@ fn a() {
 
 ## Macros 2.0
 
-Rust's declarative macros are very powerful however some of the rules around `macro_rules!` have always confused me.
+Rust的声明式宏非常强大，然而有些 `macro_rules!` 的规则让我很困惑。
 
-For one, `macro_rules!` acts as a simple token transformation.
-It takes a list of tokens and outputs a new list of tokens, nothing smarter than that.
-The publicity rules end up being the rules of where the macro is being called.
-This is obvious because the codes is being simply pasted into that place.
+比如，`macro_rules!`是一个简单的token转换过程。
+它接受一个token列表，输出新的token列表，仅仅如此。
+可见性原则会遵从宏的调用处的规则。
+这很显然——因为代码只是被简单地粘贴回原处。
 
-Macros 2.0 is an rfc describing a replacement to `macro_rules!` with a new construct simply using the keyword `macro`.
+Macros 2.0 是一个 RFC，介绍了`macro_rules!`的一种替代，它的构造只需要简单地使用关键字`macro`
 
-One of the main improvements the new syntax introduces is macro hygiene which allows macros to use the publicity rules of where they are written rather than where they are called.
+它的主要改进中，引入了一种新的格式（macro hygiene），允许宏使用它们定义处的可见性规则，而不是调用处。
 
 ### `generators`
 
