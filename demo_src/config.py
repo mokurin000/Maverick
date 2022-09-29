@@ -58,7 +58,7 @@ social_links = [
     },
     {
         "name": "Bilibili",
-        "url": "https://liolok.com/",
+        "url": "https://space.bilibili.com/25382793",
         "icon": "gi gi-bilibili"
     }
 ]
