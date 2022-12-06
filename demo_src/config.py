@@ -30,6 +30,11 @@ external_links = [
         "name": "liolok",
         "url": "https://liolok.com/",
         "brief": "liolok的博客"
+    },
+    {
+        "name": "Integral",
+        "url": "https://blog.integral.org.cn/",
+        "brief": "Integral的博客"
     }
 ]
 nav = [
@@ -55,6 +60,11 @@ social_links = [
         "name": "GitHub",
         "url": "https://github.com/poly000",
         "icon": "gi gi-github"
+    },
+    {
+        "name": "Twitter",
+        "url": "https://twitter.com/_poly000",
+        "icon": "gi gi-twitter"
     },
     {
         "name": "Bilibili",
