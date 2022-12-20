@@ -35,6 +35,11 @@ external_links = [
         "name": "Integral",
         "url": "https://blog.integral.org.cn/",
         "brief": "Integral的博客"
+    },
+    {
+        "name": "ControlNet",
+        "url": "https://controlnet.space/",
+        "brief": "ControlNet的博客"
     }
 ]
 nav = [
