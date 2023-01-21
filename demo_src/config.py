@@ -37,6 +37,11 @@ external_links = [
         "brief": "Integral的博客"
     },
     {
+        "name": "aidenpers",
+        "url": "https://www.aidenpers.xyz",
+        "brief": "aidenpers的博客"
+    },
+    {
         "name": "ControlNet",
         "url": "https://controlnet.space/",
         "brief": "ControlNet的博客"
