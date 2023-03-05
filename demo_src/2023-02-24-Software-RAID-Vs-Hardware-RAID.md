@@ -18,38 +18,22 @@ tags:
 
 ## 正文
 
-<!--
-Here's a good argument-starting question: which is faster and/or better, hardware RAID or software RAID?
--->
+一个很容易引起争论的问题：硬RAID和软RAID哪个更快和（或）更好？
 
-<!--
-A lot of conventional wisdom says hardware RAID, but I mostly disagree. Let's ask the inverse question: how (or when) can hardware RAID be faster than software RAID?
--->
+很多传统观点认为是硬RAID，但我很不同意。让我们问一个相反的问题：硬件RAID如何（或何时）比软件RAID快？
 
-<!--
-If you're doing RAID-5, the hardware could do XOR faster than your CPU can. But in modern systems XOR performance is pretty much constrained by the memory bandwidth, not CPU power. It is possible to have better memory bandwidth than the CPU (graphics cards do), but it's not cheap.
--->
+如果你要用RAID-5，硬件可以比你的CPU更快XOR。但是，在现代系统中，XOR的性能基本上受制于内存带宽，而不是CPU的能力。你可能有比CPU更好的内存带宽（显卡就是这样），但这并不便宜。
 
-<!--
-If you're doing RAID-1, hardware RAID can reduce the bus bandwidth needed for writes from N DMA transfers to N disks to one DMA transfer to itself. But for this to make your system faster, you need to be saturating the PCI bus bandwidth with write traffic, which is not exactly common. (In theory you might see this with RAID-5 too.)
--->
+如果你要用RAID-1，硬件RAID可以减少写的总线带宽，从N个DMA传输到N个磁盘到一个DMA传输到自己。但是，为了使你的系统更快，你需要用写流量使PCI总线带宽饱和，这并不常见。(理论上，你也可以在RAID-5中遇到这种情况）。
 
-<!--
-I believe that's it. (Additions and corrections welcome.)
--->
+就是这样。(欢迎补充和更正）
 
-<!--
-The usual retort for all this is that while hardware RAID may be no faster than software RAID, at least you're offloading the work from your main CPU so the system's overall speed goes up. However, for this to matter your system needs to be CPU constrained and doing significant write IO (if you only have insignificant write IO, the extra CPU usage for software RAID will also be small). This is not exactly common either.
--->
+通常的反驳是，虽然硬件RAID可能不比软件RAID快，但至少把负荷从你的主CPU上转移了，所以系统的整体速度提高了。然而，要达到这种情况，你的系统需要在CPU方面很差，并且要做大量的写入IO（如果你的写入IO不是特别多，那么软RAID的额外CPU使用率也会很小）。这种情况也不太常见。
 
-<!--
-There is one downside for software RAID: the operating system has to be running in order to use it, which can complicate early boot. But software RAID also has a lot of upsides, including hardware independence. (You're dependent on software, but you pretty much are anyways; only a few crazy people try moving filesystems between different operating systems.)
--->
+软件RAID有一个缺点：启动操作系统后才可以使用。这会使早期启动变得复杂。但软件RAID也有很多优点，如不依赖硬件。
 
-<!--
-The one wildcard I can see in hardware RAID's favour is virtualization, which might deliver a future of heavily used hardware running close to both CPU and IO saturation.
--->
+> The one wildcard I can see in hardware RAID's favour is virtualization, which might deliver a future of heavily used hardware running close to both CPU and IO saturation.
 
-<!--
-(This entry is brought to you by the Tivoli Storage Manager documentation I was plowing through today, which made me grind my teeth by tossing off a 'hardware RAID is better than software RAID' bit in passing.)
--->
+我认为虚拟化是硬RAID的优势所在，可以帮你压榨硬件，达到CPU和IO饱和。
+
+DeepL翻译后润色。
