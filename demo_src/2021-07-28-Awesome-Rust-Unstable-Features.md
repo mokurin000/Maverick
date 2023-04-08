@@ -162,6 +162,8 @@ Point { x, y } = Point::random();
 
 ### 从任意块提前返回，`label_break_value`
 
+> 于 Rust 1.65 稳定。
+
 [`loop`可以带值退出]: https://doc.rust-lang.org/edition-guide/rust-2018/control-flow/loops-can-break-with-a-value.html
 [关于rust表达式]: https://doc.rust-lang.org/reference/statements-and-expressions.html
 [not goto]: http://david.tribble.com/text/goto.html
@@ -662,6 +664,8 @@ let user_name = match UserName::from_str("ethan") {
 };
 ```
 
+### `exhaustive_patterns`
+
 With the feature `exhaustive_patterns` the type system becomes smart enough for us to eliminate the `Err` branch altogether.
 
 ```rust
@@ -705,7 +709,7 @@ fn slow_but_small() {
 
 ### `stmt_expr_attributes`
 
-这个特性让你可以在几乎任何地方放置属性，而不仅仅是顶层项目。例如，有了这个功能，你就可以在一个闭包上放置一个[optimize attribute](#optimize-attribute)
+这个特性让你可以在几乎任何地方标记属性，而不仅仅是顶层项目。例如，你可以在一个闭包上放一个[optimize attribute](#optimize-attribute)
 
 ### `cfg_version`
 
@@ -727,7 +731,8 @@ fn a() {
 
 ### `no_core`
 
-自从你可以用 `#![no_std]` 选项来选择不使用完整标准库已经有一段时间了。
+不使用标准库的 `#![no_std]` 选项已经存在有段时间了。
+
 这对于不在完整环境中运行的应用非常重要，比如嵌入式系统。
 嵌入式系统通常没有操作系统，甚至没有动态内存，所以 `std` 中的许多功能都无法使用。
 
@@ -761,15 +766,15 @@ Macros 2.0 是一个 RFC，介绍了`macro_rules!`的一种替代，它的构造
 
 ### `generators`
 
-Generators/coroutines provide a special kind of function that can be paused during execution to "yield" intermediate values to the caller.
+生成器（协程）提供了一种特殊的函数，可以在执行过程中暂停，“yield” 中间值给调用者。
 
-Generators can return multiple values using the `yield` keyword, each time pausing the function and returning to the caller.
-A generator can then `return` a single value after which it can no longer be resumed.
+生成器允许你使用`yield`关键字返回多个值，每次暂停该函数并返回给调用者。
 
-About three years ago I attempted to write an algorithm to traverse an infinite matrix along its diagonals.
-I found it very difficult to write that with Rust's iterators and ended up giving up.
+生成器中也可以`return`单个值，不可再恢复。
 
-Here is an implementation using Rust's generators/coroutines along with a number of other features we've discussed already.
+大约三年前，我尝试编写算法，沿对角线遍历一个无穷的矩阵。我发现用Rust的迭代器编写它非常困难，最终放弃了。
+
+这是我的实现，使用了Rust的生成器（协程）和一些我们刚刚讨论过的特性。
 
 ```rust
 #![feature(
@@ -825,27 +830,27 @@ fn main() {
 >
 > There is a compelling argument against adding too many new features as they can greatly increase the learning curve.
 
-Generators make it possible to write implementations that are far more difficult or even impossible to write without them.
+生成器让一些没有这个特性会难以编写甚至无法编写的实现变为可能。
 
-Generators were added to implement async-await in the standard library.
-It is most likely that the exact semantics will change before any kind of stabilisation but they are very fun to play with.
+生成器在标准库中是为了实现 async/await 添加的。
+具体的语义在稳定化前很可能被修改，但它很有趣。
 
-### Final thoughts
+### 总结
 
-[Generic associated types]: https://github.com/rust-lang/rfcs/blob/master/text/1598-generic_associated_types.md
-[inline asm]: https://rust-lang.github.io/rfcs/2873-inline-asm.html
-[specialization]: https://rust-lang.github.io/rfcs/1210-impl-specialization.html
+[GAT]: https://github.com/rust-lang/rfcs/blob/master/text/1598-generic_associated_types.md
+[内联汇编]: https://rust-lang.github.io/rfcs/2873-inline-asm.html
+[特化]: https://rust-lang.github.io/rfcs/1210-impl-specialization.html
 [Twitter]: https://twitter.com/efun_b
 [RFC]: https://rust-lang.github.io/rfcs/
 [tracking issue]: https://github.com/rust-lang/rust/labels/C-tracking-issue
 [the unstable book]: https://doc.rust-lang.org/beta/unstable-book/the-unstable-book.html
 
-I have to apologise for not including three amazing unstable features; [Generic associated types], [inline asm] and [specialization].
-I simply did not feel able to give these features justice in this article but I may try to talk about them in future.
+我很抱歉，没有引用另外三个不错的unstable特性：[GAT], [内联汇编]和[特化]。
+我只是感觉在这篇文章我做不到客观的评价它们，不过将来我可能会尝试。
 
-If you wish to read more about an unstable feature the best place to start is [the unstable book] where most of them are listed.
-The unstable book then links to a [tracking issue] which then often, in turn, links to an [RFC].
-With this combination of sources, you can then build up a picture of the details surrounding a feature.
+如果你想了解更多unstable特性，我推荐你看[the unstable book]，这里会列出绝大部分。
+Unstable book会连接到[tracking issue]，而后者往往会链接到[RFC]。
+组合使用这些来源，你可以很好地了解新特性。
 
 Thank you for reading my first blog post 😃.
 The best way to support me is by following my [Twitter].
