@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source venv/bin/activate
+
 if [ $? != 0 ]
 then exit 1
 fi
