@@ -52,9 +52,9 @@ external_links = [
         "brief": "ControlNet的博客"
     },
     {
-        "name": "PangLAN",
-        "url": "https://yinn.party",
-        "brief": "PangLAN的个人博客"
+        "name": "Sbchild",
+        "url": "https://sbchild.top/blog/",
+        "brief": "色妹妹的船新博客"
     }
     
 ]
