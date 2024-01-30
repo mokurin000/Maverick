@@ -55,6 +55,11 @@ external_links = [
         "name": "Sbchild",
         "url": "https://sbchild.top/blog/",
         "brief": "色妹妹的船新博客"
+    },
+    {
+        "name": "PangLAN",
+        "url": "https://pll.moe",
+        "brief": "PangLAN的博客"
     }
     
 ]
