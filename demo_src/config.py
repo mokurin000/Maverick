@@ -56,7 +56,6 @@ external_links = [
         "url": "https://sbchild.top/blog/",
         "brief": "色妹妹的船新博客"
     }
-    
 ]
 nav = [
     {

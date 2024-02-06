@@ -6,9 +6,9 @@ date: 2020-10-01 01:04
 status: publish
 author: Poly000
 categories: 
-  - Windows
+  - Win32
 tags: 
-  - Windows
+  - Win32
   - Wallpaper
 ---
 

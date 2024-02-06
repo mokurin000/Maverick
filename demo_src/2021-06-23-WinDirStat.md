@@ -6,9 +6,9 @@ date: 2021-06-23 19:30
 status: publish
 author: Poly000
 categories: 
-  - Windows
+  - Win32
 tags: 
-  - Windows
+  - Win32
   - Storage_Analyse
 ---
 
