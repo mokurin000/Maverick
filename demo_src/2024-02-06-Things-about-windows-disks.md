@@ -2,7 +2,7 @@
 layout: post
 title: Win32 盘符，设备号和硬盘型号
 slug: win32-drive-letters-deviceid-harddisk-model
-date: 2023-02-24 22:08
+date: 2024-02-06 18:23
 status: publish
 author: Poly000
 categories: 
