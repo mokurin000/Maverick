@@ -37,7 +37,6 @@ def logical_drives():
 ### 卷
 
 #### 使用 Powershell[^0]:
-[^0]: https://winreg-kb.readthedocs.io/en/latest/sources/system-keys/Mounted-devices.html#notes)
 
 ```powershell
 Get-Volume
@@ -69,7 +68,6 @@ print(volumes)
 ### 盘符 -> 硬盘型号
 
 #### 使用 Powershell[^1]
-[^1]: https://superuser.com/a/1147305
 
 ```powershell
 Get-Disk (Get-Partition -DriveLetter 'C').DiskNumber | select -Prop FriendlyName
@@ -77,7 +75,7 @@ Get-Disk (Get-Partition -DriveLetter 'C').DiskNumber | select -Prop FriendlyName
 
 ### 盘符或任意卷 -> 设备号
 
-#### 使用 Powershell[^1] （只支持盘符）
+#### 使用 Powershell （只支持盘符）
 
 ```powershell
 (Get-Partition -DriveLetter 'C').DiskNumber
@@ -167,4 +165,7 @@ list(map(lambda size: size / (1024**3), GetDiskFreeSpaceEx("C:")))
 ## 尾声
 
 感谢[^2]的 Win32 Paths 解释
+
+[^0]: https://winreg-kb.readthedocs.io/en/latest/sources/system-keys/Mounted-devices.html#notes)
+[^1]: https://superuser.com/a/1147305
 [^2]: https://chrisdenton.github.io/omnipath/Overview.html
