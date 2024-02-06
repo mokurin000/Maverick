@@ -164,7 +164,7 @@ list(map(lambda size: size / (1024**3), GetDiskFreeSpaceEx("C:")))
 
 ---------
 
-##尾声
+## 尾声
 
 感谢[^2]的 Win32 Paths 解释
 [^2]: https://chrisdenton.github.io/omnipath/Overview.html
