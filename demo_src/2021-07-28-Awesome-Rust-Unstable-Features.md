@@ -17,6 +17,8 @@ tags:
 本文原文发布于2021-07-26，其中部分内容可能已经过时。请以 Rust RFC 为准。
 已经稳定的特性见 [accepted.rs](https://github.com/rust-lang/rust/blob/master/compiler/rustc_feature/src/accepted.rs)。
 
+最后一次更新：2024-02-08
+
 ## 关于翻译
 
 [Rust 语言术语中英文对照表]: https://rustwiki.org/wiki/translate/english-chinese-glossary-of-rust/
