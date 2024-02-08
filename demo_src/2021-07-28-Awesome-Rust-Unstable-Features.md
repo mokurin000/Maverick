@@ -546,6 +546,7 @@ impl<T> TrashStack<T> {
 ```
 
 > 正如原文作者所说，rust（包括内部实现）正在减少box syntax的使用。
+>
 > 所以这个章节咕了（理直气壮）
 
 This makes things a little more ergonomic but I don't think there is much chance that this feature will ever be stabilised.
@@ -580,7 +581,10 @@ app.at("/").get(async |_| Ok("Hi"));
 
 ### `in_band_lifetimes`
 
-> 于 [Rust #93845] 移除；原始 RFC 中，不单独标注的提案被 Rust 拒绝。
+> 于 [Rust #93845] 移除；
+> 
+> 原始 RFC 中，不单独标注的提案被 Rust 拒绝。
+>
 > 详见 [Rust #44524] 。
 
 [Rust #44524]: https://github.com/rust-lang/rust/issues/44524#issuecomment-988260463
@@ -634,6 +638,7 @@ println!("你好{name}，你{age}岁了。");
 ### `type_ascription`
 
 > 已于 [Rust #101728] 移除
+>
 > 理由：语法不Rust
  
 [Rust #101728]: https://github.com/rust-lang/rust/issues/101728
@@ -716,7 +721,9 @@ let user_name = match UserName::from_str("ethan") {
 ### `exhaustive_patterns`
 
 > 译注：原作者的解释和 RFC，Issue 都对不上。
+>
 > 原Issue目标为，不可达的分支可以省略
+>
 > 如析构一个 `Result<T, !>` ，
 > ```rust
 > fn safe_unwrap<T>(x: Result<T, !>) -> T {
@@ -805,6 +812,7 @@ fn a() {
 ### Const 泛型
 
 > 这个小节由 [@Hinanawi_Tenshi_M](https://t.me/Hinanawi_Tenshi_M) 提供翻译，有改动。
+>
 > 已经在 Stable Rust 部分实现。 [^2]
 
 [^2]: https://github.com/rust-lang/rust/issues/44580#issuecomment-1074040208
