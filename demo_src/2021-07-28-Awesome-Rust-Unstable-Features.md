@@ -67,14 +67,14 @@ Rust 不保证在未来继续支持它的 Unstable 特性。
 而启用 Unstable 特性时，Rust不再提供这些保证。
 今天工作的程序可能明天就寄了！
 
-我决定学习 Unstable 特性，不是因为我需要用它们去解决实际问题，而是觉得他们很有趣。
-对我来说，使用 Unstable 特性，是种有趣的让我更多地参与语言本身的开发过程的方法。
+我决定学习 Unstable 特性，不是因为我需要用它们去解决实际问题，而是觉得他们很有意思。
+对我来说，使用 Unstable 特性，可以让我有趣地，更多的参与语言本身的开发过程。
 
 > Unstable 特性的完整列表见[Unstable 特性列表]。
 
 ## 启用 Unstable 特性
 
-为了使用 Unstable 特性，首先你需要安装 Nightly 工具链：
+若要使用 Unstable 特性，首先你需要安装 Nightly 工具链：
 
 ```bash
 rustup toolchain install nightly
@@ -292,10 +292,10 @@ fn main() {
 }
 ```
 
-在这个简单的例子中， 因为编译器优化[constant propagation]，`const` 块几乎可以说是不必要的。
-但是对于更复杂的常量，用块来表示可能更好。
+在这个简单的例子中， 因为编译器优化 [constant propagation]，`const` 块是不必要的。
+但是对于更复杂的常量，用块来表示，可能会更好。
 
-这个特性也允许在模式匹配中使用const块。
+这个特性也允许在const块中使用模式匹配。
 如 `match x { 1 + 3 => {} }` 会导致语法错误，而 `match x { const { 1 + 3 } => {} }` 不会。
 
 ### `if_let_guard`
@@ -315,7 +315,7 @@ fn main() {
 
 ### `associated_type_bounds`
 
-看看这个 stable Rust 函数：
+这是一个 stable Rust 函数：
 
 ```rust
 fn fizzbuzz() -> impl Iterator<Item = String> {
@@ -328,13 +328,13 @@ fn fizzbuzz() -> impl Iterator<Item = String> {
 }
 ```
 
-有了 `associated_type_bounds` 特性，我们可以在这种情况下使用一个匿名类型：
+有了 `associated_type_bounds` 特性，对于这种情况，我们可以使用一个匿名类型：
 
 ```rust
 fn fizzbuzz() -> impl Iterator<Item: Display> { ... }
 ```
 
-看看这个吓人地冗长的类型签名：
+看看这个冗长重复的函数签名：
 
 ```rust
 fn flatten_twice<T>(iter: T) -> Flatten<Flatten<T>>
@@ -381,7 +381,7 @@ where
 
 这些特性都被标准库使用。[`Send`][send] 和 [`Sync`][sync] 都是自动 trait。
 
-`Send` trait 被[这样定义在标准库中][send impl]：
+`Send` trait [定义于标准库][send impl]：
 
 ```rust
 pub unsafe auto trait Send {
@@ -416,16 +416,46 @@ Rust 不允许定义trait的实现时覆盖此前的实现。
 这样它们就能允许重叠的实现，因为所有的实现都是一样的。
 
 ### `type_alias_impl_trait`, `impl_trait_in_bindings` and `trait_alias`
+
 `impl Trait` 让编译器推导具体类型，把它换成实现了`Trait`的类型。
 目前，`impl Trait`只能在函数参数或返回类型中使用，无法应用于变量绑定。
 
-> 注：impl_trait_in_binding 临时被移除(2022-07-26)，可能是因为[破坏性更新](https://github.com/rust-lang/rust/issues/83021)
-`type_alias_impl_trait` 和 `impl_trait_in_bindings` 拓展了 `impl trait`，让其可用于定义类型别名和 `let` 绑定。
+> 注：impl_trait_in_binding 临时被移除(2022-07-26)，可能是因为它导致了[破坏性更新](https://github.com/rust-lang/rust/issues/83021)
 
-`trait_alias` 与 `type_alias_impl_trait` 有微妙的不同：
-你使用类型别名的时候，类型必须是固定的。
-编译器必须推断出，并且只应用单一具体的类型。
-trait别名则较为宽松，每次使用都可以是不同的类型。
+需要注意的是，使用 `type_alias_impl_trait` 时，类型必须是固定的。编译器会推断且应用单一具体的类型。
+
+```rust
+#![feature(type_alias_impl_trait)]
+
+type Foo = impl AsRef<str>;
+
+fn foo(_: Foo) {}
+
+fn main() {
+    foo(String::new());
+    foo("");
+}
+```
+```
+error[E0308]: mismatched types
+ --> src/main.rs:9:9
+  |
+3 | type Foo = impl AsRef<str>;
+  |            --------------- the expected opaque type
+...
+9 |     foo("");
+  |     --- ^^ expected opaque type, found `&str`
+  |     |
+  |     arguments to this function are incorrect
+  |
+  = note: expected opaque type `Foo`
+               found reference `&'static str`
+note: function defined here
+ --> src/main.rs:5:4
+  |
+5 | fn foo(_: Foo) {}
+  |    ^^^ ------
+```
 
 ### `fn_traits` and `unboxed_closures`
 
@@ -548,21 +578,26 @@ app.at("/").get(async |_| Ok("Hi"));
 
 ### `in_band_lifetimes`
 
+> 于 [Rust #93845] 移除；原始 RFC 中，不单独标注的提案被 Rust 拒绝。
+> 详见 [Rust #44524] 。
+
+[Rust #44524]: https://github.com/rust-lang/rust/issues/44524#issuecomment-988260463
+[Rust #93845]: https://github.com/rust-lang/rust/pull/93845
 [生命周期]: https://github.com/rust-lang/rfcs/pull/2115#issuecomment-323221054
 
-To use a lifetime it must be explicitly brought into scope.
+使用生命周期标记时，必须事先定义：
 
 ```rust
 fn select<'data>(data: &'data Data, params: &Params) -> &'data Item;
 ```
 
-With `in_band_lifetimes` the lifetimes can be used without bringing them into scope first.
+使用 `in_band_lifetimes` ，生命周期可以不先显式定义。
 
 ```rust
 fn select(data: &'data Data, params: &Params) -> &'data Item;
 ```
 
-有趣的是这正是[生命周期]在rust `1.0.0`前的写法。
+这是[生命周期]在rust `1.0.0`前的写法。
 
 ### `format_args_capture`
 
@@ -579,13 +614,27 @@ println!("你好{name}，你{age}岁了。");
 
 ### `crate_visibility_modifier`
 
-这个特性允许你写 `crate struct Foo` 而不是 `pub(crate) struct Foo` ，语义不变。
+> 已于 [Rust #97254] 移除。
+>
+> 理由：
+> ```rust
+> pub struct Foo(crate ::std::path::Path); 
+> ```
+> 会产生歧义 [^1]
 
-这使得 `pub(crate)` 更易编写，鼓励在pub不必要的时候使用crate可见性，
+[Rust #97254]: https://github.com/rust-lang/rust/pull/97254
+[^1]: https://github.com/rust-lang/rust/issues/53120#issuecomment-1124065083
+
+这个特性允许你写 `crate struct Foo` 而不是 `pub(crate) struct Foo` ，语义不变。
 
 ## Types
 
 ### `type_ascription`
+
+> 已于 [Rust #101728] 移除
+> 理由：语法不Rust
+ 
+[Rust #101728]: https://github.com/rust-lang/rust/issues/101728
 
 用`Iterator`的`collect`方法举个例子：
 collect将迭代器转换到集合
@@ -620,11 +669,9 @@ pub enum Infallible {}
 ```
 
 你可以在泛型或函数签名中使用该类型，但它不可能被构造。
-没有可以用来构造的变体。
 
-The unit type, `()` would be equivalent to an enum with a single variant.
-元类型，`()` 等价于只有一个变体的枚举。
-`never_type` 引入了一种新的类型，`!`等价于我们的没有变体的 `Infallible`。
+元类型 `()` 等价于只有一个变体的枚举。
+`never_type` 引入了一种新的类型，`!`等价于没有变体的 `Infallible`。
 
 Because `!` can never be constructed it can be given special powers.
 We don't have to handle the case of `!` because we have proven it will never exist.
@@ -666,6 +713,17 @@ let user_name = match UserName::from_str("ethan") {
 
 ### `exhaustive_patterns`
 
+> 译注：原作者的解释和 RFC，Issue 都对不上。
+> 原Issue目标为，不可达的分支可以省略
+> 如析构一个 `Result<T, !>` ，
+> ```rust
+> fn safe_unwrap<T>(x: Result<T, !>) -> T {
+>     match x {
+>         Ok(y) => y,
+>     }
+> }
+> ```
+
 With the feature `exhaustive_patterns` the type system becomes smart enough for us to eliminate the `Err` branch altogether.
 
 ```rust
@@ -705,11 +763,11 @@ fn slow_but_small() {
 }
 ```
 
-这对微调应用程序非常有用，在这些应用程序中，尺寸和性能之间的权衡特别明显，例如在使用 [web assembly] 时。
+这对微调应用程序非常有用。在这些应用程序中，尺寸和性能之间的权衡特别重要。例如使用 [web assembly] 时。
 
 ### `stmt_expr_attributes`
 
-这个特性让你可以在几乎任何地方标记属性，而不仅仅是顶层项目。例如，你可以在一个闭包上放一个[optimize attribute](#optimize-attribute)
+这个特性让你可以在几乎任何地方标记属性，而不仅仅是顶层项目。例如，你可以在一个闭包上放一个[optimize attribute](#`optimize_attribute`)
 
 ### `cfg_version`
 
@@ -745,13 +803,15 @@ fn a() {
 ### Const 泛型
 
 > 这个小节由 [@Hinanawi_Tenshi_M](https://t.me/Hinanawi_Tenshi_M) 提供翻译，有改动。
+> 已经在 Stable Rust 部分实现。 [^2]
 
+[^2]: https://github.com/rust-lang/rust/issues/44580#issuecomment-1074040208
 [rust dublin talk]: https://lazy.codes/posts/intro-to-const-generics/
 
 我在都柏林 Rust 集会中做过一个关于 const_generics 的未来的[演讲][rust dublin talk]。
 与其重复那些内容，我更推荐大家去[看这个演讲][rust dublin talk]。
 
-## Macros 2.0
+### Macros 2.0
 
 Rust的声明式宏非常强大，然而有些 `macro_rules!` 的规则让我很困惑。
 
@@ -845,8 +905,8 @@ fn main() {
 [tracking issue]: https://github.com/rust-lang/rust/labels/C-tracking-issue
 [the unstable book]: https://doc.rust-lang.org/beta/unstable-book/the-unstable-book.html
 
-我很抱歉，没有引用另外三个不错的unstable特性：[GAT], [内联汇编]和[特化]。
-我只是感觉在这篇文章我做不到客观的评价它们，不过将来我可能会尝试。
+我很抱歉，没有介绍其他三个不错的unstable特性：[GAT], [内联汇编]和[特化]。
+我只是感觉，在这篇文章中，我做不到客观的评价它们，不过将来我可能会尝试。
 
 如果你想了解更多unstable特性，我推荐你看[the unstable book]，这里会列出绝大部分。
 Unstable book会连接到[tracking issue]，而后者往往会链接到[RFC]。
