@@ -798,14 +798,16 @@ fn a() {
 
 ### `no_core`
 
-不使用标准库的 `#![no_std]` 选项已经存在有段时间了。
+不依赖 `::std` 的 `#![no_std]` 选项已经存在很久了，
 
-这对于不在完整环境中运行的应用非常重要，比如嵌入式系统。
+`#![no_core]` 则对应着不依赖 `::core` 。
+
+这对于不在完整环境中运行的应用非常重要，如嵌入式系统。
 嵌入式系统通常没有操作系统，甚至没有动态内存，所以 `std` 中的许多功能都无法使用。
 
-更进一步的，你现在可以通过 `#![no_core]` 选项来选择不使用 libcore。
-这会几乎不给你留下任何东西，你甚至不能使用libc。
-（比如说，你希望你的crate可以成为libcore的依赖。）
+你现在可以通过 `#![no_core]` 表明不使用 libcore。
+
+这样不会留下任何东西——你甚至不能使用libc。
 
 ## 其它
 
@@ -818,21 +820,25 @@ fn a() {
 [^2]: https://github.com/rust-lang/rust/issues/44580#issuecomment-1074040208
 [rust dublin talk]: https://lazy.codes/posts/intro-to-const-generics/
 
-我在都柏林 Rust 集会中做过一个关于 const_generics 的未来的[演讲][rust dublin talk]。
+在都柏林 Rust 集会中，关于 `const_generics` ，我做过一场[演讲][rust dublin talk]。
 与其重复那些内容，我更推荐大家去[看这个演讲][rust dublin talk]。
 
 ### Macros 2.0
 
-Rust的声明式宏非常强大，然而有些 `macro_rules!` 的规则让我很困惑。
+Rust的声明式宏非常强大。然而， `macro_rules!` 的一些规则，让我很困惑。
 
-比如，`macro_rules!`是一个简单的token转换过程。
-它接受一个token列表，输出新的token列表，仅仅如此。
-可见性原则会遵从宏的调用处的规则。
-这很显然——因为代码只是被简单地粘贴回原处。
+`macro_rules!` 是一个简单的token转换过程，或者说，
 
-Macros 2.0 是一个 RFC，介绍了`macro_rules!`的一种替代，它的构造只需要简单地使用关键字`macro`
+- 它接受一个token列表，输出新的token列表
+- 可见性原则会遵从宏的调用处的规则。
 
-它的主要改进中，引入了一种新的格式（macro hygiene），允许宏使用它们定义处的可见性规则，而不是调用处。
+——因为代码只是被简单地粘贴回原处。
+
+[Macros 2.0](https://veykril.github.io/tlborm/decl-macros/macros2.html) 介绍了`macro_rules!`的一种替代。
+
+编写 Macros 2.0 只需使用关键字 `macro`
+
+它引入了一种新的格式，Hygiene 。Hygiene 允许宏应用它们定义处的可见性规则，而不是调用处。
 
 ### `generators`
 
