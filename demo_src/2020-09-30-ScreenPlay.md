@@ -18,22 +18,8 @@ tags:
 
 然而找到了 _Windows10_ 下运行的的 __ScreenPlay__ 。
 
-感觉挺好的，于是贡献了zh-CN的翻译。
+还是挺好用的，给他们贡献了zh-CN的翻译。
 
 ## 安装
 
-首先需要加入 _[Discord群组](https://discord.gg/3RygPHZ)_ 获取邀请码（至少目前是）。
-
-然后到Steam激活产品 -> 输入序列号。
-
-（其中的bot因为 Power$hell 易死。）
-
-界面预览图：
-
-![create](pic/ScreenPlay_HJyMrD64ti.png)
-
-![workshop](pic/ScreenPlay_rlT7hpbbRm.png)
-
-![settings](pic/ScreenPlay_tE3OjKWO2n.png)
-
-
+可以在Steam直接获取安装。
