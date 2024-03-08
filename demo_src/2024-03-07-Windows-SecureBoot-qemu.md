@@ -21,7 +21,7 @@ tags:
 qemu ... \
   -drive if=pflash,format=raw,readonly=on,file=OVMF_CODE.fd \
   -drive if=pflash,format=raw,file=OVMF_VARS.ms.fd \
-  -machine pc-q35-2.5
+  -machine pc-q35-8.2
 ```
 
 其中 `-machine` 是指定一种支持 SecureBoot 的机器型号
