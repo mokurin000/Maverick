@@ -15,7 +15,7 @@ tags:
 
 ## 选项
 
-从 Debian `ovmf` 提取 `OVMF_VARS_4M.fd` [^0]，使用任意发行版提供的 `OVMF_CODE.secboot.4m.fd` ：
+从 Debian `ovmf` 提取 `OVMF_VARS_4M.ms.fd` [^0]，使用任意发行版提供的 `OVMF_CODE.secboot.4m.fd` ：
 
 ```bash
 qemu ... \
