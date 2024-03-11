@@ -772,7 +772,7 @@ fn slow_but_small() {
 }
 ```
 
-这对微调应用程序非常有用。在这些应用程序中，尺寸和性能之间的权衡特别重要。例如使用 [web assembly] 时。
+这对微调应用程序非常有用。在这些应用程序中，大小和性能的权衡特别重要。例如使用 [web assembly] 时。
 
 ### `stmt_expr_attributes`
 
