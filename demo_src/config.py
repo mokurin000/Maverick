@@ -32,6 +32,11 @@ external_links = [
         "brief": "liolok的博客"
     },
     {
+        "name": "Integral",
+        "url": "https://integral.codeberg.page/",
+        "brief": "Integral 的博客"
+    },
+    {
         "name": "Leon Cha",
         "url": "http://leoncha.online/",
         "brief": "Leon Cha 的博客"
