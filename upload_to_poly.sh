@@ -16,4 +16,4 @@ sed -i 's! poly000</span>! mokurin000 | <a href="https://icp.gov.moe/?keyword=20
 
 cp -r tmp/* ../mokurin000.github.io/
 cp google8812b0ec10b9d67f.html ../mokurin000.github.io/
-(cd ../poly000.github.io && git add . && git commit -m update  && git push)
+(cd ../mokurin000.github.io && git add . && git commit -m update  && git push)
