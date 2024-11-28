@@ -24,6 +24,7 @@ tags:
 ### 优点
 
 - 较为可控的目录限制
+- 可以阻止访问主用户隐私数据
 - 不同应用之间，无法基于内置存储中的垃圾文件追踪用户
 
 ### 缺点
@@ -33,15 +34,19 @@ tags:
 - 常年未更新，Android 14+ 支持未来堪忧
 - 非 Google Play 渠道购买，均为限制单手机使用
 
-## [炼妖壶](https://play.google.com/store/apps/details?id=com.oasisfeng.island)
+## [IsLand](https://play.google.com/store/apps/details?id=com.oasisfeng.island)
 
 > 开发者同《绿色守护》
 > 
-> 隔离环境，把国产软件塞一起
+> 隔离环境，把国产软件塞一起；
+>
+> 基于Work Profile实现，国产ROM兼容性不一定好
 
 ### 优点
 
+- 也可用于反取证
 - 单空间使用，无需 Root
+- 可以阻止访问主用户隐私数据
 - (root+放弃支付软件) 不同应用之间，无法基于内置存储中的垃圾文件追踪用户
 
 ### 缺点
@@ -49,6 +54,10 @@ tags:
 - 新版本转为闭源软件
 - 需要Root才能开启多个工作资料，互相隔离不同国产应用
 - 输入法、支付应用调用都是分割的，这一点会影响上一条
+
+## [Insular](https://secure-system.gitlab.io/Insular/)
+
+> [#IsLand](#island) 的开源复刻实现。
 
 ## [black_and_white_list](https://github.com/Petit-Abba/black_and_white_list)
 
@@ -97,6 +106,7 @@ tags:
 
 ### 优点
 
+- 隐私保护最好的方式
 - 省心，不会遇到各种风控过不去
 - 环境物理隔离，不再担心侧漏检测
 
