@@ -34,6 +34,12 @@ tags:
 - 常年未更新，Android 14+ 支持未来堪忧
 - 非 Google Play 渠道购买，均为限制单手机使用
 
+## [MaterialCleaner](https://github.com/MaterialCleaner/MaterialCleaner)
+
+>类似 [#存储空间隔离](#存储空间隔离)
+>
+> 这个项目被“酷安大神”搞死了，兼容性问题比较大
+
 ## [IsLand](https://play.google.com/store/apps/details?id=com.oasisfeng.island)
 
 > 开发者同《绿色守护》
