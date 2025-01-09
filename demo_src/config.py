@@ -33,7 +33,7 @@ external_links = [
     },
     {
         "name": "Integral",
-        "url": "https://integral.codeberg.page/",
+        "url": "https://blog.i7.homes/",
         "brief": "Integral 的博客"
     },
     {
