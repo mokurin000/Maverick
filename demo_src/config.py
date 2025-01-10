@@ -57,9 +57,9 @@ external_links = [
         "brief": "色妹妹的船新博客"
     },
     {
-        "name": "PangLAN",
-        "url": "https://pll.moe",
-        "brief": "PangLAN的博客"
+        "name": "HypengW",
+        "url": "https://blog.bluempty.com/",
+        "brief": "HypengW的博客"
     }
 ]
 nav = [
