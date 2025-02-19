@@ -52,12 +52,10 @@ tags:
 ## 摄像手机
 
 [IP摄像头]: https://play.google.com/store/apps/details?id=com.pas.webcam
+[SpyNET Camera]: https://apt.izzysoft.de/fdroid/index/apk/com.spynet.camtest
 
+- [SpyNET Camera]，开源软件，2017停更
 - [IP摄像头]，广告软件
-
-笔者试过一些 `摄像头 -> rtsp` 的开源实现，结论是：基本上都不能稳定工作。
-
-有兴趣的话可以研究下这一部分有没有开源平替。
 
 ## 录像机
 
