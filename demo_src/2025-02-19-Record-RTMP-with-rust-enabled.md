@@ -167,6 +167,8 @@ After=network-manager.service
 # user 改为你的用户名
 ExecStart=/home/user/rtsp_push_rtmp.nu
 Restart=always
+# 每小时分一次 vod_[...].m3u8
+RuntimeMaxSec=3600
 
 [Install]
 WantedBy=default.target
