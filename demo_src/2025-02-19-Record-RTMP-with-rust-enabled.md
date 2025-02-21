@@ -185,3 +185,23 @@ systemctl enable --user --now rtmp-to-rtsp.service
 ```bash
 ffmpeg -i vod_2025-02-19_16_47_38.m3u8 -c copy output.mp4
 ```
+
+或者使用 nushell 脚本：
+
+```nushell
+# 此处 live 之前改为你的视频存储路径
+cd /mnt/Data/monitor/live
+
+for $it in (fd '^vod_.*\.m3u8$' | lines) {
+    # 提取文件名部分，这里是配合产生的 `<时间戳>/vod_<时间戳>.m3u8` 路径格式
+    let name = ($it | str replace --regex "/.*" "");
+    
+    # 合并 .m3u8 视频，不进行重编码
+    ffmpeg -i $it -codec copy ($name + ".mp4")
+    
+    # 清理合并成功的 .ts 视频分片
+    if ($env.LAST_EXIT_CODE == 0) {
+        rm -rf $name
+    }
+}
+```
