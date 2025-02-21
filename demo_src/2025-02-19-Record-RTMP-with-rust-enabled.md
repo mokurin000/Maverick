@@ -2,7 +2,7 @@
 layout: post
 title: 基于 Xiu 和 ffmpeg 的局域网录像机平替方案
 slug: xiu-ffmpeg-based-lan-video-recorder
-date: 2025-02-19 21:28
+date: 2025-02-21 13:07
 status: publish
 author: Poly000
 categories: 
