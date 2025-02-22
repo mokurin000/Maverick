@@ -103,8 +103,10 @@ ${EDITOR:-nano} ~/rtsp-to-rtmp.nu
 
 # 填入你的 RTSP 推流地址
 let rtsp_addr = "rtsp://192.168.xxx.xxx:8080/h264.sdp";
+# 填入你的摄像头名称
+let camera_prefix = "";
 
-ffmpeg -hwaccel qsv -i $rtsp_addr -framerate 30 -video_size 1920x1080 -c:v h264_qsv -global_quality 30 -f flv ( "rtmp://127.0.0.1/live/" + ( date now | format date "%Y-%m-%d_%H-%M-%S" ))
+ffmpeg -hwaccel qsv -i $rtsp_addr -framerate 30 -video_size 1920x1080 -c:v h264_qsv -global_quality 30 -f flv -ar 22050 ( "rtmp://127.0.0.1/live/" + $camera_prefix + ( date now | format date "%Y-%m-%d_%H-%M-%S" ))
 ```
 
 #### NVENC
@@ -114,8 +116,10 @@ ffmpeg -hwaccel qsv -i $rtsp_addr -framerate 30 -video_size 1920x1080 -c:v h264_
 
 # 填入你的 RTSP 推流地址
 let rtsp_addr = "rtsp://192.168.xxx.xxx:8080/h264.sdp";
+# 填入你的摄像头名称
+let camera_prefix = "";
 
-ffmpeg -hwaccel cuda -i $rtsp_addr -framerate 30 -video_size 1920x1080 -c:v h264_nvenc -rc:v vbr_hq -cq 30 -f flv ( "rtmp://127.0.0.1/live/" + ( date now | format date "%Y-%m-%d_%H_%M_%S" ))
+ffmpeg -hwaccel cuda -i $rtsp_addr -framerate 30 -video_size 1920x1080 -c:v h264_nvenc -rc:v vbr_hq -cq 30 -f flv -ar 22050 ( "rtmp://127.0.0.1/live/" + $camera_prefix + ( date now | format date "%Y-%m-%d_%H_%M_%S" ))
 ```
 
 ### Systemd 服务项
