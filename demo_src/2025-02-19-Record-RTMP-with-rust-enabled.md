@@ -106,7 +106,15 @@ let rtsp_addr = "rtsp://192.168.xxx.xxx:8080/h264.sdp";
 # 填入你的摄像头名称
 let camera_prefix = "";
 
-ffmpeg -hwaccel qsv -i $rtsp_addr -framerate 30 -video_size 1920x1080 -c:v h264_qsv -global_quality 30 -f flv -ar 22050 ( "rtmp://127.0.0.1/live/" + $camera_prefix + ( date now | format date "%Y-%m-%d_%H-%M-%S" ))
+(
+  ffmpeg
+  -rtsp_transport tcp # 指定TCP协议
+  -hwaccel qsv # QuickSyncVideo 加速
+  -i $rtsp_addr -framerate 30 # 30 fps
+  -c:v h264_qsv -global_quality 30 # ICQ 30
+  -f flv -ar 22050 # 音频采样率
+  ( "rtmp://127.0.0.1/live/" + $camera_prefix + ( date now | format date "%Y-%m-%d_%H-%M-%S" ))
+)
 ```
 
 #### NVENC
@@ -119,7 +127,15 @@ let rtsp_addr = "rtsp://192.168.xxx.xxx:8080/h264.sdp";
 # 填入你的摄像头名称
 let camera_prefix = "";
 
-ffmpeg -hwaccel cuda -i $rtsp_addr -framerate 30 -video_size 1920x1080 -c:v h264_nvenc -rc:v vbr_hq -cq 30 -f flv -ar 22050 ( "rtmp://127.0.0.1/live/" + $camera_prefix + ( date now | format date "%Y-%m-%d_%H_%M_%S" ))
+(
+  ffmpeg
+  -rtsp_transport tcp # 指定TCP协议
+  -hwaccel cuda # CUDA加速
+  -i $rtsp_addr -framerate 30 # 30 fps
+  -c:v h264_nvenc -rc:v vbr_hq -cq 30 # CQR 30
+  -f flv -ar 22050 # 音频采样率
+  ( "rtmp://127.0.0.1/live/" + $camera_prefix + ( date now | format date "%Y-%m-%d_%H_%M_%S" ))
+)
 ```
 
 ### Systemd 服务项
