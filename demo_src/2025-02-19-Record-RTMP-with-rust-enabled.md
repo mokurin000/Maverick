@@ -204,11 +204,7 @@ systemctl enable --user --now rtmp-to-rtsp.service
 
 使用以下命令将 H264 编码的 `*.ts` 文件合并为 `.mp4` 格式，以使 mpv 可以正常seek视频。
 
-```bash
-ffmpeg -i vod_2025-02-19_16_47_38.m3u8 -c copy output.mp4
-```
-
-或者使用 nushell 脚本：
+使用 nushell 脚本：
 
 ```nushell
 # 此处 live 之前改为你的视频存储路径
@@ -227,3 +223,17 @@ for $it in (fd '^vod_.*\.m3u8$' | lines) {
     }
 }
 ```
+
+播放视频时，可以直接使用NuShell脚本：
+
+```nu
+let prefix = "";
+let output = $prefix + "temp.m3u";
+
+# 此处可以自行填写年份，月份，日期，小时等
+let pattern = '^' + $prefix + '....-..-.._.._.._..\.mp4$';
+
+fd $pattern out> $output
+mpv $output
+```
+
