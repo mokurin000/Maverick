@@ -8,7 +8,7 @@ author: Poly000
 categories: 
   - Modem
 tags: 
-  - Moden
+  - Modem
   - CMCC
 ---
 
