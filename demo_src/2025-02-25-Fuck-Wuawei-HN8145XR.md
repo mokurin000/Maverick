@@ -113,13 +113,40 @@ if __name__ == "__main__":
 
 ## 恢复华为公版界面
 
-> 注意：需要先备份好 宽带帐户，宽带密码，ONT认证密码
-> 如果只修改界面，不直接 restore_xxx.sh ，可能可以保留下来
+> 参考：[折腾HN8145XR（恢复华为界面 等）][2]
+
+> 需要先备份好 宽带帐户，宽带密码，ONT认证密码
+>
+> 如果只修改界面，不直接 restore_xxx.sh ，可能可以保留下来ONT认证密码
+>
 > 作者的OTN注册方式是 Password
 
-**TODO**
+1. 启动 `WW_Dollar2.exe`
+2. 在你的电脑启动 ncat:
 
-[来源][2]
+> 如果没有ncat，可以 `scoop install nmap`。
+
+```bash
+ncat -l -p 9999 > hw_boardinfo
+```
+
+3. 在光猫，使用 busybox nc 把 hw_boardinfo 传过来：
+> 此处 192.168.1.4 为电脑的局域网IP
+
+```bash
+busybox nc 192.168.1.4 9999 < /mnt/jffs2/hw_boardinfo
+```
+
+4. 备份一份 `hw_boardinfo`
+5. 打开 `hw_boardinfo` ，修改：
+
+```text
+obj.id = "0x0000001a"; obj.value = "COMMON";
+obj.id = "0x0000001b"; obj.value = "COMMON";
+obj.id = "0x00000031"; obj.value = "NOCHOOSE"; 
+```
+
+6. 把修改后的 hw_boardinfo 传回覆盖 `/mnt/jffs2/hw_boardinfo` 和 `/mnt/jffs2/hw_boardinfo.bak` 。
 
 [0]: https://blog.csdn.net/qq_26373925/article/details/112798210
 [1]: https://www.right.com.cn/forum/thread-8339357-1-1.html
