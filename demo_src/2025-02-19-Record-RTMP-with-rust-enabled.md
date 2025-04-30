@@ -198,6 +198,16 @@ WantedBy=default.target
 systemctl enable --user --now rtmp-to-rtsp.service
 ```
 
+### tmpfiles.d 清理视频录像
+
+例如，清理三天前创建的目录/文件:
+
+```text
+e /path/to/live 0755 用户名 用户名 cC:3d -
+```
+
+注意，cC分别表示文件和目录的创建时间，不添加 cC: 会导致默认考虑访问时间。
+
 # 尾声
 
 现在 `xiu` 就可以在你设置好的存储位置自动产出动态 `.m3u8` 文件和（每当 Xiu退出/串流停止推往Xiu 时生成）的总 `vod_<...>.m3u8` 。
@@ -207,8 +217,8 @@ systemctl enable --user --now rtmp-to-rtsp.service
 使用 nushell 脚本：
 
 ```nushell
-# 此处 live 之前改为你的视频存储路径
-cd /mnt/Data/monitor/live
+# 此处改为你的视频存储路径
+cd /path/to/live
 
 for $it in (fd '^vod_.*\.m3u8$' | lines) {
     # 提取文件名部分，这里是配合产生的 `<时间戳>/vod_<时间戳>.m3u8` 路径格式
