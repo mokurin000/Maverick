@@ -14,6 +14,14 @@ tags:
   - frigate
 ---
 
+## 软件前置
+
+```bash
+sudo pacman -Syu docker docker-compose nvidia-container-toolkit
+sudo systemctl enable --now docker
+# 确保 docker0 已经被代理或已设置好连接代理
+```
+
 ## 硬件要求
 
 该方案相比于之前的丐版方案，需要更新的硬件才能解决种种兼容或性能问题。
