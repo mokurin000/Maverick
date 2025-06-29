@@ -101,7 +101,7 @@ services:
 
 > 此处以乐橙为例子。大多摄像头可以在 iSpy 的文档找到需要的链接。
 >
-> 顺便一提，乐橙摄像头要求密码必须是字母加数字，否则不可能连接成功。
+> 顺便一提，乐橙摄像头要求 WIFI 密码必须是字母加数字，否则不可能连接成功。
 
 frigate 在这方面的文档出奇的烂。你需要综合翻阅 [完整参考配置](https://docs.frigate.video/configuration/reference/) 和小节甚至 issues 。
 
