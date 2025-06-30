@@ -128,7 +128,9 @@ auth:
   enabled: false 
 
 ffmpeg:
-  hwaccel_args: preset-nvidia-h264
+  # 如果遇到 hardware capacity xxxx 问题，
+  # 可以通过官方工具设置使用 HAVC 编码传输。
+  hwaccel_args: preset-nvidia
   # IMOU 的摄像头rtsp流，udp传输时很容易丢包、重复包、断流。
   input_args: -rtsp_transport tcp
 
@@ -175,6 +177,9 @@ cameras:
       threshold: 40 # 减少树叶抖动导致的不必要 detect。
       contour_area: 10
       improve_contrast: true
+
+# 注意：部分旧版显卡可能会遇到 onnxruntime 不支持对应 kernel 版本的问题
+# 如果有 Intel CPU 可以考虑 OpenVINO - CPU 运行。
 detectors:
   onnx:
     type: onnx
