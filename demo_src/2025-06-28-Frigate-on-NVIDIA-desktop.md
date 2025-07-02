@@ -129,7 +129,7 @@ auth:
 
 ffmpeg:
   # 如果遇到 hardware capacity xxxx 问题，
-  # 可以通过官方工具设置使用 HAVC 编码传输。
+  # 可以通过官方工具设置使用 H264 编码传输。
   hwaccel_args: preset-nvidia
   # IMOU 的摄像头rtsp流，udp传输时很容易丢包、重复包、断流。
   input_args: -rtsp_transport tcp
