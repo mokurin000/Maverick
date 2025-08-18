@@ -93,16 +93,19 @@ services:
         target: /tmp/cache
         tmpfs:
           size: 1000000000
+    cap_add:
+      - CAP_PERFMON
     ports:
       - "8971:8971"
       - "8554:8554" # RTSP feeds
+    runtime: nvidia # migrate to CDI for newest nvidia driver
     deploy:
       resources:
         reservations:
           devices:
             - driver: nvidia
               device_ids: ['0']
-              capabilities: [gpu]
+              capabilities: [gpu, video]
 ```
 
 - config.yaml
