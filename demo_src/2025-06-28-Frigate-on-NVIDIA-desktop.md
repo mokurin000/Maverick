@@ -2,7 +2,7 @@
 layout: post
 title: Frigate + NVIDIA 显卡笔记本的部署
 slug: frigate-on-linux-laptop-with-nvidia
-date: 2025-06-28 12:11
+date: 2025-08-18 12:22
 status: publish
 author: Poly000
 categories: 
@@ -133,6 +133,7 @@ auth:
 ffmpeg:
   # 如果遇到 hardware capacity xxxx 问题，
   # 可以通过官方工具设置使用 H264 编码传输。
+  # 如 乐橙: https://www.imou.com/en/support/download
   hwaccel_args: preset-nvidia
   # IMOU 的摄像头rtsp流，udp传输时很容易丢包、重复包、断流。
   input_args: -rtsp_transport tcp
