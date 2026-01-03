@@ -22,7 +22,10 @@ tags:
 
 ```text
 # 写死在一些翻译中
-src/lang/*.rs
+src/lang.rs
+ -> translate_locale
+    - 此处的 s.replace 会判断 upgrade_rustdesk_server_pro* 和
+      powered_by_me 两个特殊字段，需要修改 APP_NAME 才会判定需要替换。
 # 程序 App name
 libs/hbb_common
  -> src/config.rs
