@@ -18,6 +18,14 @@ tags:
 
 该博文会收录一些关于某远程软件二次开发需要的操作，请大家修改后遵循 GPLv3 要求！
 
+## 官方高级设置
+
+官方的高级设置均可以对应到 `hbb_common::config::keys::OPTION_` 系列变量
+
+## hide-tray
+
+`src/tray.rs::start_tray` 负责启动托盘图标，其在 macos 会强要求托盘图标启动
+
 ## s/RustDesk/XXXXDesk
 
 ```text
