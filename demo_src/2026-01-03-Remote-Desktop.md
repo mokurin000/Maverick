@@ -85,3 +85,12 @@ python3 ./generate.py -f ../../${build_dir}/ -o . -e ../../${build_dir}/XXXXDesk
 ```
 
 或者于CI中移除 `skip_portable_pack` 。
+
+## 输入事件
+
+Rustdesk 有多种不同输入方式，其中 `LegacyMode` 全权使用 `enigo`，翻译和 1:1 模式则混合使用 `enigo` 或 `rdev`。
+
+顺带一提，Linux 平台下，Rustdesk 可能会启动输入服务并且通过IPC发送输入按键。
+
+`src/ui_session_interface.rs` 中， `get_keyboard_mode` 负责返回会话使用的键盘模式。
+
